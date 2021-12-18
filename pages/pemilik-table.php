@@ -50,12 +50,13 @@
   <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3   bg-gradient-dark" id="sidenav-main">
     <div class="sidenav-header">
       <i class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
-      <a class="navbar-brand m-0" href="javascript:;">
+      <a class="navbar-brand m-0" href="../pages/dashboard.php">
         <img src="../assets/img/logo-ct.png" class="navbar-brand-img h-100" alt="main_logo">
         <span class="ms-1 font-weight-bold text-white">Dashboard</span>
       </a>
     </div>
     <hr class="horizontal light mt-0 mb-2">
+    <div class="collapse navbar-collapse  w-auto  max-height-vh-100" id="sidenav-collapse-main">
     <ul class="navbar-nav">
         <li class="nav-item">
           <a class="nav-link text-white active bg-gradient-primary" href="../pages/dashboard.php">
@@ -181,6 +182,7 @@
           </a>
         </li>
       </ul>
+    </div>
   </aside>
   <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
     <!-- Navbar -->
@@ -301,7 +303,6 @@
     <div class="container-fluid py-4">
       <div class="row">
         <div class="col-12">
-          <a class="btn bg-gradient-success mb-3" href="javascript:;"><i class="material-icons text-sm">add</i>&nbsp;&nbsp;Add</a>
           <div class="card my-4">
             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
               <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
@@ -314,6 +315,7 @@
                   <thead>
                     <tr>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 align-middle text-center">Numb</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">ID</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Name</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Password</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Address</th>
@@ -326,6 +328,9 @@
                     <tr>
                       <td class="align-middle text-center text-sm">
                         <span class="text-secondary font-weight-bold text-xs"><?php echo $counter; ?></span>
+                      </td>
+                      <td>
+                        <span class="text-secondary font-weight-bold text-xs"><?php echo $pemilik["ID_Pemilik"]; ?></span>
                       </td>
                       <td>
                         <div class="d-flex py-1">
