@@ -7,20 +7,34 @@
     
     // menangkap data yang dikirim dari form
     $email          = $_POST['email'];
-    $password       = $_POST['password'];
+    $password       = md5($_POST['password']);
 
     // Fetch all users data from database
-    $result         =   "SELECT * FROM admin
+    $result         =   "SELECT * FROM user
                         WHERE email='$email' AND password='$password'";
-    $admins         = mysqli_query($mysqli, $result);
+    $signin         = mysqli_query($mysqli, $result);
     
     // menghitung jumlah data yang ditemukan
-    $cek            = mysqli_num_rows($admins);
+    $cek            = mysqli_num_rows($signin);
     
     if($cek > 0){
-        $_SESSION['email']  = $email;
-        $_SESSION['status'] = "signin";
-        header("location:../pages/dashboard/admin/dashboard.php");
+        $data   = mysqli_fetch_assoc($signin);
+
+        if($data['role'] == "admin"){
+            $_SESSION['email']  = $email;
+            $_SESSION['role'] = "admin";
+            header("location:../pages/dashboard/admin/dashboard.php");
+        } else if($data['role'] == "pegawai"){
+            $_SESSION['email']  = $email;
+            $_SESSION['role'] = "pegawai";
+            header("location:../pages/dashboard/pegawai/dashboard.php");
+        } else if($data['role'] == "pemilik"){
+            $_SESSION['email']  = $email;
+            $_SESSION['role'] = "pemilik";
+            header("location:../pages/dashboard/pemilik/dashboard.php");
+        } else {
+            header("location:../sign-in.php?pesan=errorSignIn");
+        }
     } else {
         header("location:../sign-in.php?pesan=errorSignIn");
     }

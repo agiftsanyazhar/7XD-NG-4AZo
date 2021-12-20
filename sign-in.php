@@ -56,6 +56,10 @@
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
                           Sign In Gagal!
                         </div>
+                <?php } else if($_GET['pesan'] == "successSignOut"){ ?>
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                          Sign Out Berhasil!
+                        </div>
                 <?php } else if($_GET['pesan'] == "belumSignIn"){ ?>
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
                           Anda harus Sign In untuk mengakses halaman admin!
@@ -88,11 +92,11 @@
                 <form method="POST" action="process/sign-in.php" role="form" class="text-start">
                   <div class="input-group input-group-outline my-3">
                     <label class="form-label">Email</label>
-                    <input type="email" class="form-control" name="email">
+                    <input type="email" class="form-control" name="email" >
                   </div>
                   <div class="input-group input-group-outline mb-3">
                     <label class="form-label">Password</label>
-                    <input type="password" class="form-control" name="password">
+                    <input type="password" class="form-control" name="password" minlength="8" required>
                   </div>
                   <div class="form-check form-switch d-flex align-items-center mb-3">
                     <input class="form-check-input" type="checkbox" id="rememberMe">

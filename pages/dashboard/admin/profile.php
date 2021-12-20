@@ -3,7 +3,7 @@
   include_once("../../../config/config.php");
 
   session_start();
-  if($_SESSION['status'] != "signin"){
+  if($_SESSION['role'] == ""){
     header("location:../../../sign-in.php?pesan=belumSignIn");
   }
 ?>
@@ -191,7 +191,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white" href="../../../pages/dashboard/admin/profile.php">
+          <a class="nav-link text-white" href="../../../process/sign-out.php">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">exit_to_app</i>
             </div>
