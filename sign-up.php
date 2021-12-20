@@ -26,7 +26,7 @@
   <link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="assets/img/favicon.png">
   <title>
-    Material Dashboard 2 by True Bengkel
+   True Bengkel
   </title>
   <!--     Fonts and icons     -->
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
@@ -38,56 +38,124 @@
   <!-- Material Icons -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
   <!-- CSS Files -->
-  <link id="pagestyle" href="assets/css/material-dashboard.css?v=3.0.0" rel="stylesheet" />
+  <link id="pagestyle" href="assets/css/material-dashboard.css" rel="stylesheet" />
 </head>
 
-<body class="">
+<body class="bg-gray-200">
   <main class="main-content  mt-0">
-    <section>
-      <div class="page-header min-vh-100">
-        <div class="container">
-          <div class="row">
-            <div class="col-6 d-lg-flex d-none h-100 my-auto pe-0 position-absolute top-0 start-0 text-center justify-content-center flex-column">
-              <div class="position-relative bg-gradient-primary h-100 m-3 px-7 border-radius-lg d-flex flex-column justify-content-center" style="background-image: url('assets/img/illustrations/illustration-signup.jpg'); background-size: cover;">
+    <div class="page-header align-items-start min-vh-100" style="background-image: url('https://images.unsplash.com/photo-1497294815431-9365093b7331?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1950&q=80');">
+      <span class="mask bg-gradient-dark opacity-6"></span>
+      <div class="container my-auto">
+        <div class="row">
+          <div class="col-lg-6 col-md-8 col-12 mx-auto">
+            <div class="card z-index-0 fadeIn3 fadeInBottom">
+              <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                  <?php
+                    if(isset($_GET['pesan'])){
+                      if($_GET['pesan'] == "errorSignIn"){ ?>
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                          Sign In Gagal!
+                        </div>
+                <?php } else if($_GET['pesan'] == "successSignOut"){ ?>
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                          Sign Out Berhasil!
+                        </div>
+                <?php } else if($_GET['pesan'] == "belumSignIn"){ ?>
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                          Anda harus Sign In untuk mengakses halaman admin!
+                        </div>
+                <?php }
+                    }
+                   ?>
+                <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
+                  <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">Sign Up</h4>
+                  <div class="row mt-3">
+                    <div class="col-2 text-center ms-auto">
+                      <a class="btn btn-link px-3" href="javascript:;">
+                        <i class="fa fa-facebook text-white text-lg"></i>
+                      </a>
+                    </div>
+                    <div class="col-2 text-center px-1">
+                      <a class="btn btn-link px-3" href="javascript:;">
+                        <i class="fa fa-github text-white text-lg"></i>
+                      </a>
+                    </div>
+                    <div class="col-2 text-center me-auto">
+                      <a class="btn btn-link px-3" href="javascript:;">
+                        <i class="fa fa-google text-white text-lg"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
               </div>
-            </div>
-            <div class="col-xl-4 col-lg-5 col-md-7 d-flex flex-column ms-auto me-auto ms-lg-auto me-lg-5">
-              <div class="card card-plain">
-                <div class="card-header">
-                  <h4 class="font-weight-bolder">Sign Up</h4>
-                  <p class="mb-0">Enter your email and password to register</p>
-                </div>
-                <div class="card-body">
-                  <form role="form">
-                    <div class="input-group input-group-outline mb-3">
-                      <label class="form-label">Name</label>
-                      <input type="text" class="form-control" required>
+              <div class="card-body">
+                <form method="POST" action="process/sign-in.php" role="form" class="text-start">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="input-group input-group-outline my-1">
+                        <label class="form-label">Nama</label>
+                        <input type="text" class="form-control" name="nama" >
+                      </div>
                     </div>
-                    <div class="input-group input-group-outline mb-3">
-                      <label class="form-label">Email</label>
-                      <input type="email" class="form-control" required>
+                    <div class="col-md-6">
+                      <div class="input-group input-group-outline my-1">
+                        <label class="form-label">Alamat</label>
+                        <input type="text" class="form-control" name="alamat" >
+                      </div>
                     </div>
-                    <div class="input-group input-group-outline mb-3">
-                      <label class="form-label">Password</label>
-                      <input type="password" class="form-control" minlength="8" required>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="input-group input-group-outline my-1">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-control" name="email" >
+                      </div>
                     </div>
-                    <div class="text-center">
-                      <button type="button" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Sign Up</button>
+                    <div class="col-md-6">
+                      <div class="input-group input-group-outline my-1">
+                        <label class="form-label">HP</label>
+                        <input type="number" class="form-control" name="hp" >
+                      </div>
                     </div>
-                  </form>
-                </div>
-                <div class="card-footer text-center pt-0 px-lg-2 px-1">
-                  <p class="mb-2 text-sm mx-auto">
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="input-group input-group-outline my-1">
+                        <label class="form-label">Password</label>
+                        <input type="password" class="form-control" name="password" minlength="8" required>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="text-center">
+                    <button type="submit" class="btn bg-gradient-primary w-100 my-4 mb-2">Sign Up</button>
+                  </div>
+                  <p class="mt-4 text-sm text-center">
                     Already have an account?
                     <a href="sign-in.php" class="text-primary text-gradient font-weight-bold">Sign In</a>
                   </p>
-                </div>
+                </form>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </section>
+      <footer class="footer position-absolute bottom-2 py-2 w-100">
+        <div class="container">
+          <div class="row align-items-center justify-content-lg-between">
+            <div class="col-12 col-md-6 my-auto">
+              <div class="copyright text-center text-sm text-muted text-lg-start">
+                  © <script>
+                    document.write(new Date().getFullYear())
+                  </script>,
+                  made with <i class="fa fa-heart"></i> by
+                  <strong><span>True Bengkel</strong></span>
+                  for a better web.
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
   </main>
   <!--   Core JS Files   -->
   <script src="assets/js/core/popper.min.js"></script>

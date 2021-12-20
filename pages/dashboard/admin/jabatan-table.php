@@ -3,7 +3,7 @@
   include_once("../../../config/config.php");
 
   session_start();
-  if($_SESSION['status'] != "signin"){
+  if($_SESSION['role'] == ""){
     header("location:../../../sign-in.php?pesan=belumSignIn");
   }
   
@@ -48,7 +48,7 @@
   <!-- Material Icons -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
   <!-- CSS Files -->
-  <link id="pagestyle" href="../../../assets/css/material-dashboard.css?v=3.0.0" rel="stylesheet" />
+  <link id="pagestyle" href="../../../assets/css/material-dashboard.css" rel="stylesheet" />
 </head>
 
 <body class="g-sidenav-show  bg-gray-200">
@@ -194,6 +194,14 @@
             <span class="nav-link-text ms-1">Profile</span>
           </a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="../../../process/sign-out.php">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">exit_to_app</i>
+            </div>
+            <span class="nav-link-text ms-1">Sign Out</span>
+          </a>
+        </li>
       </ul>
     </div>
   </aside>
@@ -316,7 +324,7 @@
     <div class="container-fluid py-4">
       <div class="row">
         <div class="col-12">
-          <a class="btn bg-gradient-success mb-3" href="javascript:;"><i class="material-icons text-sm">add</i>&nbsp;&nbsp;Add</a>
+          <a class="btn bg-gradient-success mb-3" href="../../../pages/create/jabatan.php"><i class="material-icons text-sm">add</i>&nbsp;&nbsp;Add</a>
           <div class="card my-4">
             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
               <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">

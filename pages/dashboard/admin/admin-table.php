@@ -3,12 +3,13 @@
   include_once("../../../config/config.php");
 
   session_start();
-  if($_SESSION['status'] != "signin"){
+  if($_SESSION['role'] == ""){
     header("location:../../../sign-in.php?pesan=belumSignIn");
   }
   
   // Fetch all users data from database
-  $result           = "SELECT * FROM admin";
+  $result           = "SELECT * FROM user
+                      WHERE role='admin'";
   $admins         = mysqli_query($mysqli, $result);
   $counter          = 1;
 ?>
@@ -48,7 +49,7 @@
   <!-- Material Icons -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
   <!-- CSS Files -->
-  <link id="pagestyle" href="../../../assets/css/material-dashboard.css?v=3.0.0" rel="stylesheet" />
+  <link id="pagestyle" href="../../../assets/css/material-dashboard.css" rel="stylesheet" />
 </head>
 
 <body class="g-sidenav-show  bg-gray-200">
@@ -194,6 +195,14 @@
             <span class="nav-link-text ms-1">Profile</span>
           </a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="../../../process/sign-out.php">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">exit_to_app</i>
+            </div>
+            <span class="nav-link-text ms-1">Sign Out</span>
+          </a>
+        </li>
       </ul>
     </div>
   </aside>
@@ -332,6 +341,8 @@
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">ID</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Nama Admin</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Password</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Alamat</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Telepon</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
                     </tr>
                   </thead>
@@ -342,7 +353,7 @@
                         <span class="text-secondary font-weight-bold text-xs"><?php echo $counter; ?></span>
                       </td>
                       <td>
-                        <span class="text-secondary font-weight-bold text-xs"><?php echo $admin["id_admin"]; ?></span>
+                        <span class="text-secondary font-weight-bold text-xs"><?php echo $admin["id_user"]; ?></span>
                       </td>
                       <td>
                         <div class="d-flex py-1">
@@ -350,13 +361,19 @@
                             <img src="../../../assets/img/ivana-squares.jpg" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
                           </div>
                           <div class="d-flex flex-column justify-content-center">
-                            <h6 class="mb-0 text-sm"><?php echo $admin["nama_admin"]; ?></h6>
+                            <h6 class="mb-0 text-sm"><?php echo $admin["nama"]; ?></h6>
                             <p class="text-xs text-secondary mb-0"><?php echo $admin["email"]; ?></p>
                           </div>
                         </div>
                       </td>
                       <td>
                         <span class="text-secondary font-weight-bold text-xs"><?php echo $admin["password"]; ?></span>
+                      </td>
+                      <td>
+                        <span class="text-secondary font-weight-bold text-xs"><?php echo $admin["alamat"]; ?></span>
+                      </td>
+                      <td>
+                        <span class="text-secondary font-weight-bold text-xs"><?php echo $admin["telp"]; ?></span>
                       </td>
                       <td>
                         <a class="btn btn-link text-danger text-gradient px-3 mb-0" href="javascript:;" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')"><i class="material-icons text-sm me-2">delete</i>Delete</a>
