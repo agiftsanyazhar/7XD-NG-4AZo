@@ -60,6 +60,10 @@
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
                           Sign Out Berhasil!
                         </div>
+                <?php } else if($_GET['pesan'] == "successSignUp"){ ?>
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                          Sign Up Berhasil! Silakan Sign In
+                        </div>
                 <?php } else if($_GET['pesan'] == "belumSignIn"){ ?>
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
                           Anda harus Sign In untuk mengakses halaman admin!

@@ -1,6 +1,44 @@
 <?php
-  // Create database connection using config file
-  include_once("config/config.php");
+    // Create database connection using config file
+    include_once("config/config.php");
+
+    // // errror
+    // mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+
+    // if(isset($_POST['sign-up'])){
+    //     // menangkap data yang dikirim dari form
+    //     $nama           = filter_input(INPUT_POST, 'nama', FILTER_SANITIZE_STRING);          //$_POST['nama'];
+    //     $email          = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);          //$_POST['email'];
+    //     $password       = md5($_POST['password'], PASSWORD_DEFAULT);          //md5($_POST['password']);
+    //     $repassword     = md5($_POST['repassword'], PASSWORD_DEFAULT);          //md5($_POST['password']);
+    //     $role           = "pemilik";          //md5($_POST['password']);
+    //     $alamat         = filter_input(INPUT_POST, 'alamat', FILTER_SANITIZE_STRING);
+    //     $telp           = $_POST['telp'];
+
+    //     // menyiapkan query insert
+    //     $result         =   "INSERT INTO user (nama, email, password, repassword, role, alamat, telp)
+    //                         VALUES ('$nama', '$email', '$password', '$repassword', '$role', '$alamat', '$telp')";
+    //     $signup         = mysqli_query($mysqli, $result);
+
+    //     // $stmt           = $mysqli->prepare($result);
+
+    //     // // bind parameter ke query
+    //     // $validatedData = array(
+    //     //     ":nama"     => $nama,
+    //     //     ":email"    => $email,
+    //     //     ":password" => $password,
+    //     //     ":repassword" => $repassword,
+    //     //     ":role"     => 'pemilik',
+    //     //     ":alamat"   => $alamat,
+    //     //     ":telp"     => $telp,
+    //     // );
+
+    //     // $saved            = $stmt->execute($validatedData);
+
+    //     if($signup){
+    //         header("location:sign-in.php?pesan=successSignUp");
+    //     }
+    // }
 ?>
 
 <!--
@@ -50,23 +88,14 @@
           <div class="col-lg-6 col-md-8 col-12 mx-auto">
             <div class="card z-index-0 fadeIn3 fadeInBottom">
               <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-                  <?php
+              <?php
                     if(isset($_GET['pesan'])){
-                      if($_GET['pesan'] == "errorSignIn"){ ?>
+                      if($_GET['pesan'] == "errorSignUp"){ ?>
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
                           Sign In Gagal!
                         </div>
-                <?php } else if($_GET['pesan'] == "successSignOut"){ ?>
-                        <div class="alert alert-success alert-dismissible fade show" role="alert">
-                          Sign Out Berhasil!
-                        </div>
-                <?php } else if($_GET['pesan'] == "belumSignIn"){ ?>
-                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                          Anda harus Sign In untuk mengakses halaman admin!
-                        </div>
                 <?php }
-                    }
-                   ?>
+                    } ?>
                 <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
                   <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">Sign Up</h4>
                   <div class="row mt-3">
@@ -89,45 +118,51 @@
                 </div>
               </div>
               <div class="card-body">
-                <form method="POST" action="process/sign-in.php" role="form" class="text-start">
-                  <div class="row">
+                <form method="POST" action="process/sign-up.php" role="form" class="text-start">
+                  <div class="row my-3">
                     <div class="col-md-6">
-                      <div class="input-group input-group-outline my-1">
+                      <div class="input-group input-group-outline">
                         <label class="form-label">Nama</label>
                         <input type="text" class="form-control" name="nama" >
                       </div>
                     </div>
                     <div class="col-md-6">
-                      <div class="input-group input-group-outline my-1">
+                      <div class="input-group input-group-outline">
                         <label class="form-label">Alamat</label>
                         <input type="text" class="form-control" name="alamat" >
                       </div>
                     </div>
                   </div>
-                  <div class="row">
+                  <div class="row my-3">
                     <div class="col-md-6">
-                      <div class="input-group input-group-outline my-1">
+                      <div class="input-group input-group-outline">
                         <label class="form-label">Email</label>
                         <input type="email" class="form-control" name="email" >
                       </div>
                     </div>
                     <div class="col-md-6">
-                      <div class="input-group input-group-outline my-1">
-                        <label class="form-label">HP</label>
-                        <input type="number" class="form-control" name="hp" >
+                      <div class="input-group input-group-outline">
+                        <label class="form-label">Telepon</label>
+                        <input type="number" class="form-control" name="telp" >
                       </div>
                     </div>
                   </div>
-                  <div class="row">
+                  <div class="row my-3">
                     <div class="col-md-12">
-                      <div class="input-group input-group-outline my-1">
+                      <div class="input-group input-group-outline">
                         <label class="form-label">Password</label>
                         <input type="password" class="form-control" name="password" minlength="8" required>
                       </div>
                     </div>
+                    <!-- <div class="col-md-6">
+                      <div class="input-group input-group-outline">
+                        <label class="form-label">Ulangi Password</label>
+                        <input type="password" class="form-control" name="repassword" minlength="8" required>
+                      </div>
+                    </div> -->
                   </div>
                   <div class="text-center">
-                    <button type="submit" class="btn bg-gradient-primary w-100 my-4 mb-2">Sign Up</button>
+                    <button type="submit" class="btn bg-gradient-primary w-100 my-4 mb-2" name="sign-up">Sign Up</button>
                   </div>
                   <p class="mt-4 text-sm text-center">
                     Already have an account?

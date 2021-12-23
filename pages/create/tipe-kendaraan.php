@@ -212,7 +212,7 @@
                 </div>
               </div>
               <div class="card-body">
-                <form method="POST" action="process/create/tipe-kendaraan.php" role="form" class="text-start">
+                <form method="POST" action="../../process/create/tipe-kendaraan.php" role="form" class="text-start">
                 <div class="row">
                     <div class="col-md-12">
                       <div class="input-group input-group-outline my-1">
@@ -222,7 +222,7 @@
                     </div>
                   </div>
                   <div class="text-center">
-                    <button type="submit" class="btn bg-gradient-primary w-100 my-4 mb-2">Add</button>
+                    <button type="submit" class="btn bg-gradient-primary w-100 my-4 mb-2" name="add-tipe-kendaraan">Add</button>
                   </div>
                 </form>
               </div>
