@@ -8,8 +8,7 @@
   }
   
   // Fetch all users data from database
-  $result           = "SELECT id_pemilik FROM pemilik
-                      ORDER BY id_pemilik DESC LIMIT 1;";
+  $result           = "SELECT * FROM suku_cadang";
   $suku_cadangs         = mysqli_query($mysqli, $result);
   $counter          = 1;
 ?>
@@ -176,19 +175,13 @@
                     </tr>
                   </thead>
                   <tbody>
-
-                  <?php 
-                    while ($row = $suku_cadangs->fetch_assoc()) {
-                        echo $row['id_pemilik'];
-                    }
-                  ?>
                     <?php foreach ($suku_cadangs as $suku_cadang) : ?>
                     <tr>
                       <td class="align-middle text-center text-sm">
                         <span class="text-secondary font-weight-bold text-xs"><?php echo $counter; ?></span>
                       </td>
                       <td>
-                        <span class="text-secondary font-weight-bold text-xs"><?php echo $suku_cadang ?></span>
+                        <span class="text-secondary font-weight-bold text-xs"><?php echo $suku_cadang["id_suku_cadang"]; ?></span>
                       </td>
                       <td>
                         <div class="d-flex py-1">
