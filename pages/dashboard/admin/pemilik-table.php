@@ -14,6 +14,17 @@
   $result           = "SELECT * FROM user WHERE role='pemilik'";
   $pemiliks         = mysqli_query($mysqli, $result);
   $counter          = 1;
+
+  // Fetch all users data from database
+  $query         =   "SELECT * FROM user WHERE email='". $_SESSION['email']."'";
+  $result         = mysqli_query($mysqli, $query);
+
+  $row   = mysqli_fetch_assoc($result);
+
+  $_SESSION['nama']  = $row['nama'];
+  $_SESSION['email'] = $row['email'];
+  $_SESSION['alamat'] = $row['alamat'];
+  $_SESSION['telp'] = $row['telp'];
 ?>
 
 <!--
@@ -92,23 +103,6 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white " href="../../../pages/dashboard/admin/kendaraan-table.php">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">table_view</i>
-            </div>
-            <span class="nav-link-text ms-1">Kendaraan</span>
-          </a>
-        </li>
-        
-        <li class="nav-item">
-          <a class="nav-link text-white " href="../../../pages/dashboard/admin/nota-suku-cadang-table.php">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">table_view</i>
-            </div>
-            <span class="nav-link-text ms-1">Nota Suku Cadang</span>
-          </a>
-        </li>
-        <li class="nav-item">
           <a class="nav-link text-white " href="../../../pages/dashboard/admin/pegawai-table.php">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">table_view</i>
@@ -145,9 +139,9 @@
         <li class="nav-item">
           <a class="nav-link text-white " href="../../../pages/dashboard/admin/billing.php">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">receipt</i>
+              <i class="material-icons opacity-10">history</i>
             </div>
-            <span class="nav-link-text ms-1">Billing</span>
+            <span class="nav-link-text ms-1">History</span>
           </a>
         </li>
         <li class="nav-item mt-3">
@@ -193,7 +187,7 @@
           <ul class="navbar-nav  justify-content-end">
             <li class="nav-item d-flex align-items-center">
                 <i class="fa fa-user me-sm-1"></i>
-                <span class="d-sm-inline d-none"><?php echo $_SESSION['email']; ?></span>
+                <span class="d-sm-inline d-none"><?php echo $_SESSION['nama']; ?></span>
               </a>
             </li>
             <li class="nav-item d-xl-none ps-3 d-flex align-items-center">

@@ -9,6 +9,16 @@
   if($_SESSION['role'] == ""){
     header("location:../../../index.php?pesan=belumSignIn");
   }
+
+  $query         =   "SELECT * FROM user WHERE email='". $_SESSION['email']."'";
+  $result         = mysqli_query($mysqli, $query);
+
+  $row   = mysqli_fetch_assoc($result);
+
+  $_SESSION['nama']  = $row['nama'];
+  $_SESSION['email'] = $row['email'];
+  $_SESSION['alamat'] = $row['alamat'];
+  $_SESSION['telp'] = $row['telp'];
 ?>
 
 <!--
@@ -82,9 +92,9 @@
         <li class="nav-item">
           <a class="nav-link text-white " href="../../../pages/dashboard/pemilik/billing.php">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">receipt</i>
+              <i class="material-icons opacity-10">history</i>
             </div>
-            <span class="nav-link-text ms-1">Billing</span>
+            <span class="nav-link-text ms-1">History</span>
           </a>
         </li>
         <li class="nav-item mt-3">
@@ -130,7 +140,7 @@
           <ul class="navbar-nav  justify-content-end">
             <li class="nav-item d-flex align-items-center">
                 <i class="fa fa-user me-sm-1"></i>
-                <span class="d-sm-inline d-none"><?php echo $_SESSION['email']; ?></span>
+                <span class="d-sm-inline d-none"><?php echo $_SESSION['nama']; ?></span>
               </a>
             </li>
             <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
@@ -167,10 +177,10 @@
           <div class="col-auto my-auto">
             <div class="h-100">
               <h5 class="mb-1">
-                <?php echo $_SESSION['email']; ?>
+                <?php echo $_SESSION['nama']; ?>
               </h5>
               <p class="mb-0 font-weight-normal text-sm">
-                CEO / Co-Founder
+              <?php echo $_SESSION['role']; ?>
               </p>
             </div>
           </div>
@@ -268,14 +278,14 @@
                 </div>
                 <div class="card-body p-3">
                   <p class="text-sm">
-                    Hi, I’m Alec Thompson, Decisions: If you can’t decide, the answer is no. If two equally difficult paths, choose the one more painful in the short term (pain avoidance is creating an illusion of equality).
+                    Hi, I’m <?php echo $_SESSION['nama']; ?>, Decisions: If you can’t decide, the answer is no. If two equally difficult paths, choose the one more painful in the short term (pain avoidance is creating an illusion of equality).
                   </p>
                   <hr class="horizontal gray-light my-4">
                   <ul class="list-group">
-                    <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">Full Name:</strong> &nbsp; Alec M. Thompson</li>
-                    <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Mobile:</strong> &nbsp; (44) 123 1234 123</li>
+                    <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">Name:</strong> &nbsp; <?php echo $_SESSION['nama']; ?></li>
+                    <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Mobile:</strong> &nbsp; <?php echo $_SESSION['telp']; ?></li>
                     <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Email:</strong> &nbsp; <?php echo $_SESSION['email']; ?></li>
-                    <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Location:</strong> &nbsp; USA</li>
+                    <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Location:</strong> &nbsp; <?php echo $_SESSION['alamat']; ?></li>
                     <li class="list-group-item border-0 ps-0 pb-0">
                       <strong class="text-dark text-sm">Social:</strong> &nbsp;
                       <a class="btn btn-facebook btn-simple mb-0 ps-1 pe-2 py-0" href="javascript:;">

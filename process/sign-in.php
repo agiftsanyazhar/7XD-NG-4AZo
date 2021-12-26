@@ -23,16 +23,16 @@
         $data   = mysqli_fetch_assoc($signin);
 
         if($data['role'] == "admin"){
-            $_SESSION['email']  = $email;
-            $_SESSION['role'] = "admin";
+            $_SESSION['email']   = $email;
+            $_SESSION['role']    = "admin";
             header("location:../pages/dashboard/admin/dashboard.php");
         } else if($data['role'] == "pegawai"){
-            $_SESSION['email']  = $email;
-            $_SESSION['role'] = "pegawai";
+            $_SESSION['email']   = $email;
+            $_SESSION['role']    = "pegawai";
             header("location:../pages/dashboard/pegawai/dashboard.php");
         } else if($data['role'] == "pemilik"){
-            $_SESSION['email']  = $email;
-            $_SESSION['role'] = "pemilik";
+            $_SESSION['email']   = $email;
+            $_SESSION['role']    = "pemilik";
             header("location:../pages/dashboard/pemilik/suku-cadang-table.php");
         } else {
             header("location:../index.php?pesan=errorSignIn");

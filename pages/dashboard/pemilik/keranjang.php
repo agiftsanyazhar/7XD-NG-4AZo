@@ -9,9 +9,23 @@
   if($_SESSION['role'] == ""){
     header("location:../../../index.php?pesan=belumSignIn");
   }
-  
-  // Fetch all users data from database
+
   $counter          = 1;
+
+  $query         =   "SELECT * FROM user WHERE email='". $_SESSION['email']."'";
+  $result         = mysqli_query($mysqli, $query);
+
+  $row   = mysqli_fetch_assoc($result);
+
+  $_SESSION['nama']  = $row['nama'];
+  $_SESSION['email'] = $row['email'];
+  $_SESSION['alamat'] = $row['alamat'];
+  $_SESSION['telp'] = $row['telp'];
+
+  if(empty($_SESSION['keranjang'])){
+    echo "<script>alert('Wah, keranjang belanjamu kosong. Yuk, isi dengan barang-barang impianmu!')</script>
+          <script>location='suku-cadang-table.php'</script>";
+  }
 ?>
 
 <!--
@@ -84,9 +98,9 @@
         <li class="nav-item">
           <a class="nav-link text-white " href="../../../pages/dashboard/pemilik/billing.php">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">receipt</i>
+              <i class="material-icons opacity-10">history</i>
             </div>
-            <span class="nav-link-text ms-1">Billing</span>
+            <span class="nav-link-text ms-1">History</span>
           </a>
         </li>
         <li class="nav-item mt-3">
@@ -199,16 +213,16 @@
                         >
                       </td>
                       <td>
-                        <span class="text-secondary text-xs font-weight-bold"><?php echo "Rp".number_format($row["harga_satuan"]); ?></span>
+                        <span class="text-secondary text-xs font-weight-bold"><?php echo "Rp".number_format($row["harga_satuan"], 2, ',', '.'); ?></span>
                       </td>
                       <td>
                         <span class="text-secondary text-xs font-weight-bold"><?php echo $qty; ?></span>
                       </td>
                       <td>
-                        <span class="text-secondary text-xs font-weight-bold"><?php echo "Rp".number_format($subtotal); ?></span>
+                        <span class="text-secondary text-xs font-weight-bold"><?php echo "Rp".number_format(($subtotal), 2, ',', '.'); ?></span>
                       </td>
                       <td>
-                        <a class="btn btn-link text-danger px-3 mb-0" href="../../../process/delete/suku-cadang.php?id_suku_cadang=<?php echo $suku_cadang['id_suku_cadang']; ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')"><i class="material-icons text-sm me-2">delete</i>Delete</a>
+                        <a class="btn btn-link text-danger px-3 mb-0" href="../../../process/delete/keranjang.php?id_suku_cadang=<?php echo $id; ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus produk ini?')"><i class="material-icons text-sm me-2">delete</i>Delete</a>
                       </td>
                     </tr>
                     <?php
@@ -222,7 +236,7 @@
         </div>
       </div>
       <a class="btn bg-gradient-warning mb-3" href="suku-cadang-table.php"><i class="material-icons opacity-10">arrow_back</i>&nbsp;&nbsp;Continue Shopping</a>
-      <a class="btn bg-gradient-info mb-3" href="../../../pages/create/admin.php"><i class="material-icons opacity-10">receipt_long</i>&nbsp;&nbsp;Checkout</a>
+      <a class="btn bg-gradient-info mb-3" href="checkout.php"><i class="material-icons opacity-10">receipt_long</i>&nbsp;&nbsp;Checkout</a>
       <footer class="footer py-4  ">
       <div class="container-fluid">
         <div class="row align-items-center justify-content-lg-between">

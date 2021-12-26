@@ -12,6 +12,16 @@
 
   $result         = "SELECT * FROM billing";
   $bills          = mysqli_query($mysqli, $result);
+
+  $query         =   "SELECT * FROM user WHERE email='". $_SESSION['email']."'";
+  $result         = mysqli_query($mysqli, $query);
+
+  $row   = mysqli_fetch_assoc($result);
+
+  $_SESSION['nama']  = $row['nama'];
+  $_SESSION['email'] = $row['email'];
+  $_SESSION['alamat'] = $row['alamat'];
+  $_SESSION['telp'] = $row['telp'];
 ?>
 
 <!--
@@ -84,9 +94,9 @@
         <li class="nav-item">
           <a class="nav-link text-white bg-gradient-primary active" href="../../../pages/dashboard/pemilik/billing.php">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">receipt</i>
+              <i class="material-icons opacity-10">history</i>
             </div>
-            <span class="nav-link-text ms-1">Billing</span>
+            <span class="nav-link-text ms-1">History</span>
           </a>
         </li>
         <li class="nav-item mt-3">
@@ -118,9 +128,9 @@
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
             <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Pages</a></li>
-            <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Billing</li>
+            <li class="breadcrumb-item text-sm text-dark active" aria-current="page">History</li>
           </ol>
-          <h6 class="font-weight-bolder mb-0">Billing</h6>
+          <h6 class="font-weight-bolder mb-0">History</h6>
         </nav>
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
           <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -132,7 +142,7 @@
           <ul class="navbar-nav  justify-content-end">
             <li class="nav-item d-flex align-items-center">
                 <i class="fa fa-user me-sm-1"></i>
-                <span class="d-sm-inline d-none"><?php echo $_SESSION['email']; ?></span>
+                <span class="d-sm-inline d-none"><?php echo $_SESSION['nama']; ?></span>
               </a>
             </li>
             <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
@@ -170,7 +180,7 @@
                     <h6 class="mb-3 text-sm"><?php echo $bill["nama_pemilik"]; ?></h6>
                     <span class="mb-2 text-xs">No. STNK: <span class="text-dark font-weight-bold ms-sm-2"><?php echo $bill["no_stnk"]; ?></span></span>
                     <span class="mb-2 text-xs">Tanggal Terima: <span class="text-dark ms-sm-2 font-weight-bold"><?php echo $bill["tgl_terima"]; ?></span></span>
-                    <span class="text-xs">Total Harga: <span class="text-dark ms-sm-2 font-weight-bold"><?php echo number_format($bill["total_harga"]); ?></span></span>
+                    <span class="text-xs">Total Harga: <span class="text-dark ms-sm-2 font-weight-bold"><?php echo 'Rp'.number_format($bill["total_harga"], 2, ',', '.'); ?></span></span>
                   </div>
                 </li>
                 <?php endforeach; ?>

@@ -11,9 +11,22 @@
   }
   
   // Fetch all users data from database
-  $result           = "SELECT * FROM pemilik";
-  $pemiliks         = mysqli_query($mysqli, $result);
   $counter          = 1;
+
+  $query         =   "SELECT * FROM user WHERE email='". $_SESSION['email']."'";
+  $result         = mysqli_query($mysqli, $query);
+
+  $row   = mysqli_fetch_assoc($result);
+
+  $_SESSION['nama']  = $row['nama'];
+  $_SESSION['email'] = $row['email'];
+  $_SESSION['alamat'] = $row['alamat'];
+  $_SESSION['telp'] = $row['telp'];
+
+  if(empty($_SESSION['keranjang'])){
+    echo "<script>alert('Wah, keranjang belanjamu kosong. Yuk, isi dengan barang-barang impianmu!')</script>
+          <script>location='suku-cadang-table.php'</script>";
+  }
 ?>
 
 <!--
@@ -58,7 +71,7 @@
   <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3   bg-gradient-dark" id="sidenav-main">
     <div class="sidenav-header">
       <i class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
-      <a class="navbar-brand m-0" href="../../../pages/dashboard/admin/dashboard.php">
+      <a class="navbar-brand m-0" href="../../../pages/dashboard/pemilik/suku-cadang-table.php">
         <img src="../../../assets/img/logo-ct.png" class="navbar-brand-img h-100" alt="main_logo">
         <span class="ms-1 font-weight-bold text-white">True Bengkel</span>
       </a>
@@ -66,102 +79,36 @@
     <hr class="horizontal light mt-0 mb-2">
     <div class="collapse navbar-collapse  w-auto  max-height-vh-100" id="sidenav-collapse-main">
     <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link text-white" href="../../../pages/dashboard/admin/dashboard.php">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">dashboard</i>
-            </div>
-            <span class="nav-link-text ms-1">Dashboard</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white" href="../../../pages/dashboard/admin/admin-table.php">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">table_view</i>
-            </div>
-            <span class="nav-link-text ms-1">Admin</span>
-          </a>
-        </li>
         
         <li class="nav-item">
-          <a class="nav-link text-white " href="../../../pages/dashboard/admin/jabatan-table.php">
+          <a class="nav-link text-white " href="../../../pages/dashboard/pemilik/suku-cadang-table.php">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">table_view</i>
-            </div>
-            <span class="nav-link-text ms-1">Jabatan</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white " href="../../../pages/dashboard/admin/kendaraan-table.php">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">table_view</i>
-            </div>
-            <span class="nav-link-text ms-1">Kendaraan</span>
-          </a>
-        </li>
-        
-        <li class="nav-item">
-          <a class="nav-link text-white " href="../../../pages/dashboard/admin/nota-suku-cadang-table.php">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">table_view</i>
-            </div>
-            <span class="nav-link-text ms-1">Nota Suku Cadang</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white " href="../../../pages/dashboard/admin/pegawai-table.php">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">table_view</i>
-            </div>
-            <span class="nav-link-text ms-1">Pegawai</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white active bg-gradient-primary" href="../../../pages/dashboard/admin/pembayaran-table.php">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">table_view</i>
-            </div>
-            <span class="nav-link-text ms-1">Pembayaran</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white " href="../../../pages/dashboard/admin/pemilik-table.php">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">table_view</i>
-            </div>
-            <span class="nav-link-text ms-1">Pemilik</span>
-          </a>
-        </li>
-        
-        <li class="nav-item">
-          <a class="nav-link text-white " href="../../../pages/dashboard/admin/suku-cadang-table.php">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">table_view</i>
+              <i class="material-icons opacity-10">store</i>
             </div>
             <span class="nav-link-text ms-1">Suku Cadang</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white " href="../../../pages/dashboard/admin/tipe-kendaraan-table.php">
+          <a class="nav-link text-white  bg-gradient-primary active" href="../../../pages/dashboard/pemilik/keranjang.php">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">table_view</i>
+              <i class="ni ni-cart"></i>
             </div>
-            <span class="nav-link-text ms-1">Tipe Kendaraan</span>
+            <span class="nav-link-text ms-1">Keranjang</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white " href="../../../pages/dashboard/admin/billing.php">
+          <a class="nav-link text-white " href="../../../pages/dashboard/pemilik/billing.php">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">receipt</i>
+              <i class="material-icons opacity-10">history</i>
             </div>
-            <span class="nav-link-text ms-1">Billing</span>
+            <span class="nav-link-text ms-1">History</span>
           </a>
         </li>
         <li class="nav-item mt-3">
           <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Account pages</h6>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white " href="../../../pages/dashboard/admin/profile.php">
+          <a class="nav-link text-white " href="../../../pages/dashboard/pemilik/profile.php">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">person</i>
             </div>
@@ -186,9 +133,10 @@
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
             <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Pages</a></li>
-            <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Pembayaran</li>
+            <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Keranjang</a></li>
+            <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Checkout</li>
           </ol>
-          <h6 class="font-weight-bolder mb-0">Pembayaran</h6>
+          <h6 class="font-weight-bolder mb-0">Checkout</h6>
         </nav>
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
           <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -226,11 +174,10 @@
     <div class="container-fluid py-4">
       <div class="row">
         <div class="col-12">
-          <a class="btn bg-gradient-success mb-3" href="javascript:;"><i class="material-icons text-sm">add</i>&nbsp;&nbsp;Add</a>
           <div class="card my-4">
             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
               <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-                <h6 class="text-white text-capitalize ps-3">Pembayaran</h6>
+                <h6 class="text-white text-capitalize ps-3">Keranjang</h6>
               </div>
             </div>
             <div class="card-body px-0 pb-0">
@@ -239,50 +186,119 @@
                   <thead>
                     <tr>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 align-middle text-center">Numb</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Name</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Password</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Address</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Phone</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">ID</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Nama Suku Cadang</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Harga</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Qty</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Subtotal</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <?php foreach ($pemiliks as $pemilik) : ?>
+                    <?php $total        = 0; ?>
+                    <?php foreach ($_SESSION['keranjang'] as $id => $qty) : ?>
+                    <?php
+                      $result           = "SELECT * FROM suku_cadang
+                                          WHERE id_suku_cadang='$id'";
+                      $suku_cadangs     = mysqli_query($mysqli, $result);
+                      $row              = mysqli_fetch_assoc($suku_cadangs);
+                      $subtotal         = $row['harga_satuan']*$qty;
+                    ?>
                     <tr>
                       <td class="align-middle text-center text-sm">
                         <span class="text-secondary font-weight-bold text-xs"><?php echo $counter; ?></span>
                       </td>
                       <td>
-                        <div class="d-flex py-1">
-                          <div>
-                            <img src="../../../assets/img/team-2.jpg" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
-                          </div>
-                          <div class="d-flex flex-column justify-content-center">
-                            <h6 class="mb-0 text-sm"><?php echo $pemilik["Nama_Pemilik"]; ?></h6>
-                            <p class="text-xs text-secondary mb-0"><?php echo $pemilik["Email"]; ?></p>
-                          </div>
-                        </div>
+                        <span class="text-secondary font-weight-bold text-xs"><?php echo $row["id_suku_cadang"]; ?></span>
                       </td>
                       <td>
-                        <span class="text-secondary font-weight-bold text-xs"><?php echo $pemilik["Kata_Sandi"]; ?></span>
-                      </td>
-                      <td class="text-sm">
-                        <span class="text-secondary font-weight-bold text-xs"><?php echo $pemilik["Alamat_Pemilik"]; ?></span>
+                        <span class="text-secondary text-xs font-weight-bold"><?php echo $row["nama_suku_cadang"]; ?></span
+                        >
                       </td>
                       <td>
-                        <span class="text-secondary text-xs font-weight-bold"><?php echo $pemilik["Telp_Pemilik"]; ?></span>
+                        <span class="text-secondary text-xs font-weight-bold"><?php echo "Rp".number_format($row["harga_satuan"], 2, ',', '.'); ?></span>
                       </td>
                       <td>
-                        <a class="btn btn-link text-danger text-gradient px-3 mb-0" href="javascript:;" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')"><i class="material-icons text-sm me-2">delete</i>Delete</a>
-                        <a class="btn btn-link text-warning px-3 mb-0" href="javascript:;"><i class="material-icons text-sm me-2">edit</i>Edit</a>
+                        <span class="text-secondary text-xs font-weight-bold"><?php echo $qty; ?></span>
                       </td>
+                      <td>
+                        <span class="text-secondary text-xs font-weight-bold"><?php echo "Rp".number_format(($subtotal), 2, ',', '.'); ?></span>
+                      </td> 
                     </tr>
-                    <?php 
+                    <?php
+                      $total+=$subtotal;
+
                       $counter++;
-                      endforeach; 
+                      endforeach;   
                     ?>
                   </tbody>
+                  <tfoot>
+                      <th class="text-uppercase text-secondary font-weight-bold align-middle text-center" colspan="5">Total</th>
+                      <th class="text-uppercase text-secondary font-weight-bold">Rp<?php echo number_format(($total), 2, ',', '.'); ?></th>
+                  </tfoot>
                 </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="card my-4">
+            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+              <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+                <h6 class="text-white text-capitalize ps-3">Data Diri</h6>
+              </div>
+            </div>
+            <div class="card-body px-0 pb-0">
+              <div class="table-responsive px-4">
+                <form method="POST" action="process/sign-up.php" role="form" class="text-start">
+                    <div class="row my-3">
+                      <div class="col-md-6">
+                        <div class="input-group input-group-outline">
+                          <label class="form-label">Nama</label>
+                          <input type="text" class="form-control" name="nama" >
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="input-group input-group-outline">
+                          <label class="form-label">Alamat</label>
+                          <input type="text" class="form-control" name="alamat" >
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row my-3">
+                      <div class="col-md-6">
+                        <div class="input-group input-group-outline">
+                          <label class="form-label">Email</label>
+                          <input type="email" class="form-control" name="email" >
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="input-group input-group-outline">
+                          <label class="form-label">Telepon</label>
+                          <input type="number" class="form-control" name="telp" >
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row my-3">
+                      <div class="col-md-12">
+                        <div class="input-group input-group-outline">
+                          <label class="form-label">Password</label>
+                          <input type="password" class="form-control" name="password" minlength="8" required>
+                        </div>
+                      </div>
+                      <!-- <div class="col-md-6">
+                        <div class="input-group input-group-outline">
+                          <label class="form-label">Ulangi Password</label>
+                          <input type="password" class="form-control" name="repassword" minlength="8" required>
+                        </div>
+                      </div> -->
+                    </div>
+                    <div class="text-center">
+                      <!-- <button type="submit" class="btn bg-gradient-primary w-100 my-4 mb-4" name="sign-up">Sign Up</button> -->
+                      <a class="btn bg-gradient-info w-30 my-4 mb-4" href=""><i class="material-icons opacity-10">receipt_long</i>&nbsp;&nbsp;Checkout</a>
+                    </div>
+                  </form>
               </div>
             </div>
           </div>
