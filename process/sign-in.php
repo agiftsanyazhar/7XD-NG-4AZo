@@ -4,14 +4,16 @@
     
     // Create database connection using config file
     include_once("../config/config.php");
+
+    // errror
+    mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
     
     // menangkap data yang dikirim dari form
     $email          = $_POST['email'];
     $password       = md5($_POST['password']);
 
     // Fetch all users data from database
-    $result         =   "SELECT * FROM user
-                        WHERE email='$email' AND password='$password'";
+    $result         =   "SELECT * FROM user WHERE email='$email' AND password='$password'";
     $signin         = mysqli_query($mysqli, $result);
     
     // menghitung jumlah data yang ditemukan
@@ -31,11 +33,11 @@
         } else if($data['role'] == "pemilik"){
             $_SESSION['email']  = $email;
             $_SESSION['role'] = "pemilik";
-            header("location:../pages/dashboard/pemilik/dashboard.php");
+            header("location:../pages/dashboard/pemilik/suku-cadang-table.php");
         } else {
-            header("location:../sign-in.php?pesan=errorSignIn");
+            header("location:../index.php?pesan=errorSignIn");
         }
     } else {
-        header("location:../sign-in.php?pesan=errorSignIn");
+        header("location:../index.php?pesan=errorSignIn");
     }
 ?>

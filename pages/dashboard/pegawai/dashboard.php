@@ -2,9 +2,12 @@
   // Create database connection using config file
   include_once("../../../config/config.php");
 
+  // errror
+  mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+  
   session_start();
   if($_SESSION['role'] == ""){
-    header("location:../../../sign-in.php?pesan=belumSignIn");
+    header("location:../../../index.php?pesan=belumSignIn");
   }
 ?>
 
@@ -52,7 +55,7 @@
       <i class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
       <a class="navbar-brand m-0" href="../../../pages/dashboard/admin/dashboard.php">
         <img src="../../../assets/img/logo-ct.png" class="navbar-brand-img h-100" alt="main_logo">
-        <span class="ms-1 font-weight-bold text-white">Dashboard</span>
+        <span class="ms-1 font-weight-bold text-white">True Bengkel</span>
       </a>
     </div>
     <hr class="horizontal light mt-0 mb-2">
@@ -74,14 +77,7 @@
             <span class="nav-link-text ms-1">Admin</span>
           </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link text-white " href="../../../pages/dashboard/admin/detail-nota-suku-cadang-table.php">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">table_view</i>
-            </div>
-            <span class="nav-link-text ms-1">Detail Nota Suku Cadang</span>
-          </a>
-        </li>
+        
         <li class="nav-item">
           <a class="nav-link text-white " href="../../../pages/dashboard/admin/jabatan-table.php">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
@@ -98,14 +94,7 @@
             <span class="nav-link-text ms-1">Kendaraan</span>
           </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link text-white " href="../../../pages/dashboard/admin/meminta-table.php">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">table_view</i>
-            </div>
-            <span class="nav-link-text ms-1">Meminta</span>
-          </a>
-        </li>
+        
         <li class="nav-item">
           <a class="nav-link text-white " href="../../../pages/dashboard/admin/nota-suku-cadang-table.php">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
@@ -122,14 +111,7 @@
             <span class="nav-link-text ms-1">Pegawai</span>
           </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link text-white " href="../../../pages/dashboard/admin/pembayaran-table.php">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">table_view</i>
-            </div>
-            <span class="nav-link-text ms-1">Pembayaran</span>
-          </a>
-        </li>
+        
         <li class="nav-item">
           <a class="nav-link text-white " href="../../../pages/dashboard/admin/pemilik-table.php">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
@@ -138,22 +120,7 @@
             <span class="nav-link-text ms-1">Pemilik</span>
           </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link text-white " href="../../../pages/dashboard/admin/perintah-kerja-table.php">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">table_view</i>
-            </div>
-            <span class="nav-link-text ms-1">Perintah Kerja</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white " href="../../../pages/dashboard/admin/pkb-table.php">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">table_view</i>
-            </div>
-            <span class="nav-link-text ms-1">PKB</span>
-          </a>
-        </li>
+        
         <li class="nav-item">
           <a class="nav-link text-white " href="../../../pages/dashboard/admin/suku-cadang-table.php">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
@@ -173,7 +140,7 @@
         <li class="nav-item">
           <a class="nav-link text-white " href="../../../pages/dashboard/admin/billing.php">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">receipt_long</i>
+              <i class="material-icons opacity-10">receipt</i>
             </div>
             <span class="nav-link-text ms-1">Billing</span>
           </a>
@@ -403,7 +370,7 @@
                 </div>
               </div>
             </div>
-            <div class="card-body px-0 pb-2">
+            <div class="card-body px-0 pb-0">
               <div class="table-responsive">
                 <table class="table align-items-center mb-0">
                   <thead>

@@ -15,10 +15,34 @@
         $alamat         = filter_input(INPUT_POST, 'alamat', FILTER_SANITIZE_STRING);
         $telp           = $_POST['telp'];
 
-        // menyiapkan query insert
-        $result         =   "INSERT INTO user (nama, email, password, role, alamat, telp)
-                            VALUES ('$nama', '$email', '$password', '$role', '$alamat', '$telp')";
-        $signup         = mysqli_query($mysqli, $result);
+        $sql_cek        = mysqli_query($mysqli,"SELECT * FROM user WHERE email='$email' OR telp='$telp'");
+        $r_cek          = mysqli_num_rows($sql_cek);
+
+        if ($r_cek>0) { ?>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                Email atau Telepon Telah Terdaftar! Silakan Sign In
+            </div>
+            <meta http-equiv="refresh" content="1;url=../index.php">
+<?php        } else {
+            $query         =    "INSERT INTO user (nama, email, password, role, alamat, telp)
+                                VALUES ('$nama', '$email', '$password', '$role', '$alamat', '$telp');
+                                INSERT INTO Pemilik
+                                SELECT id_user, nama, email, PASSWORD, alamat, telp FROM USER
+                                ORDER BY id_user DESC LIMIT 1";
+            $signup        = $mysqli->multi_query($query);
+
+            do {
+                if ($result = $mysqli->store_result()) {
+                    var_dump($result->fetch_all(MYSQLI_ASSOC));
+                    $result->free();
+                }
+            } while ($mysqli->next_result());
+
+            if($signup){
+                header("location:../index.php");
+            }
+        }
+        
 
         // $stmt           = $mysqli->prepare($result);
 
@@ -35,10 +59,10 @@
 
         // $saved            = $stmt->execute($validatedData);
 
-        if($signup){
-            header("location:sign-in.php?pesan=successSignUp");
-        } else {
-            header("location:sign-up.php?pesan=errorSignUp");
-        }
+        // if($signup){
+        //     header("location:index.php?pesan=successSignUp");
+        // } else {
+        //     header("location:sign-up.php?pesan=errorSignUp");
+        // }
     }
 ?>

@@ -2,14 +2,16 @@
   // Create database connection using config file
   include_once("../../../config/config.php");
 
+  // errror
+  mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+
   session_start();
   if($_SESSION['role'] == ""){
-    header("location:../../../sign-in.php?pesan=belumSignIn");
+    header("location:../../../index.php?pesan=belumSignIn");
   }
   
   // Fetch all users data from database
-  $result           = "SELECT * FROM user
-                      WHERE role='admin'";
+  $result           = "SELECT * FROM user WHERE role='admin'";
   $admins         = mysqli_query($mysqli, $result);
   $counter          = 1;
 ?>
@@ -58,7 +60,7 @@
       <i class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
       <a class="navbar-brand m-0" href="../../../pages/dashboard/admin/dashboard.php">
         <img src="../../../assets/img/logo-ct.png" class="navbar-brand-img h-100" alt="main_logo">
-        <span class="ms-1 font-weight-bold text-white">Dashboard</span>
+        <span class="ms-1 font-weight-bold text-white">True Bengkel</span>
       </a>
     </div>
     <hr class="horizontal light mt-0 mb-2">
@@ -80,14 +82,7 @@
             <span class="nav-link-text ms-1">Admin</span>
           </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link text-white " href="../../../pages/dashboard/admin/detail-nota-suku-cadang-table.php">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">table_view</i>
-            </div>
-            <span class="nav-link-text ms-1">Detail Nota Suku Cadang</span>
-          </a>
-        </li>
+        
         <li class="nav-item">
           <a class="nav-link text-white " href="../../../pages/dashboard/admin/jabatan-table.php">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
@@ -104,14 +99,7 @@
             <span class="nav-link-text ms-1">Kendaraan</span>
           </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link text-white " href="../../../pages/dashboard/admin/meminta-table.php">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">table_view</i>
-            </div>
-            <span class="nav-link-text ms-1">Meminta</span>
-          </a>
-        </li>
+        
         <li class="nav-item">
           <a class="nav-link text-white " href="../../../pages/dashboard/admin/nota-suku-cadang-table.php">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
@@ -128,14 +116,7 @@
             <span class="nav-link-text ms-1">Pegawai</span>
           </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link text-white " href="../../../pages/dashboard/admin/pembayaran-table.php">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">table_view</i>
-            </div>
-            <span class="nav-link-text ms-1">Pembayaran</span>
-          </a>
-        </li>
+        
         <li class="nav-item">
           <a class="nav-link text-white" href="../../../pages/dashboard/admin/pemilik-table.php">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
@@ -144,22 +125,7 @@
             <span class="nav-link-text ms-1">Pemilik</span>
           </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link text-white " href="../../../pages/dashboard/admin/perintah-kerja-table.php">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">table_view</i>
-            </div>
-            <span class="nav-link-text ms-1">Perintah Kerja</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white " href="../../../pages/dashboard/admin/pkb-table.php">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">table_view</i>
-            </div>
-            <span class="nav-link-text ms-1">PKB</span>
-          </a>
-        </li>
+        
         <li class="nav-item">
           <a class="nav-link text-white " href="../../../pages/dashboard/admin/suku-cadang-table.php">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
@@ -179,7 +145,7 @@
         <li class="nav-item">
           <a class="nav-link text-white " href="../../../pages/dashboard/admin/billing.php">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">receipt_long</i>
+              <i class="material-icons opacity-10">receipt</i>
             </div>
             <span class="nav-link-text ms-1">Billing</span>
           </a>
@@ -213,9 +179,9 @@
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
             <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Pages</a></li>
-            <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Tables</li>
+            <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Admin</li>
           </ol>
-          <h6 class="font-weight-bolder mb-0">Tables</h6>
+          <h6 class="font-weight-bolder mb-0">Admin</h6>
         </nav>
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
           <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -253,14 +219,14 @@
     <div class="container-fluid py-4">
       <div class="row">
         <div class="col-12">
-        <a class="btn bg-gradient-success mb-3" href="javascript:;"><i class="material-icons text-sm">add</i>&nbsp;&nbsp;Add</a>
+        <a class="btn bg-gradient-success mb-3" href="../../../pages/create/admin.php"><i class="material-icons text-sm">add</i>&nbsp;&nbsp;Add</a>
           <div class="card my-4">
             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
               <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
                 <h6 class="text-white text-capitalize ps-3">Admin</h6>
               </div>
             </div>
-            <div class="card-body px-0 pb-2">
+            <div class="card-body px-0 pb-0">
               <div class="table-responsive p-0">
                 <table class="table align-items-center mb-0">
                   <thead>
@@ -269,8 +235,6 @@
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">ID</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Nama Admin</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Password</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Alamat</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Telepon</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
                     </tr>
                   </thead>
@@ -298,14 +262,8 @@
                         <span class="text-secondary font-weight-bold text-xs"><?php echo $admin["password"]; ?></span>
                       </td>
                       <td>
-                        <span class="text-secondary font-weight-bold text-xs"><?php echo $admin["alamat"]; ?></span>
-                      </td>
-                      <td>
-                        <span class="text-secondary font-weight-bold text-xs"><?php echo $admin["telp"]; ?></span>
-                      </td>
-                      <td>
-                        <a class="btn btn-link text-danger text-gradient px-3 mb-0" href="javascript:;" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')"><i class="material-icons text-sm me-2">delete</i>Delete</a>
-                        <a class="btn btn-link text-warning px-3 mb-0" href="javascript:;"><i class="material-icons text-sm me-2">edit</i>Edit</a>
+                        <a class="btn btn-link text-danger px-3 mb-0" href="../../../process/delete/admin.php?id_user=<?php echo $admin['id_user']; ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')"><i class="material-icons text-sm me-2">delete</i>Delete</a>
+                        <a class="btn btn-link text-warning px-3 mb-0" href="../../../process/edit/admin.php?=id_user<?php echo $admin['id_user']; ?>"><i class="material-icons text-sm me-2">edit</i>Edit</a>
                       </td>
                     </tr>
                     <?php 

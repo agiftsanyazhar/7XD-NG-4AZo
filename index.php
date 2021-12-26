@@ -1,6 +1,9 @@
 <?php
   // Create database connection using config file
   include_once("config/config.php");
+
+  // errror
+  mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 ?>
 
 <!--
@@ -66,7 +69,7 @@
                         </div>
                 <?php } else if($_GET['pesan'] == "belumSignIn"){ ?>
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                          Anda harus Sign In untuk mengakses halaman admin!
+                          Anda harus Sign In untuk mengakses halaman Dashboard!
                         </div>
                 <?php }
                     }
@@ -98,7 +101,7 @@
                     <label class="form-label">Email</label>
                     <input type="email" class="form-control" name="email" >
                   </div>
-                  <div class="input-group input-group-outline mb-3">
+                  <div class="input-group input-group-outline my-3">
                     <label class="form-label">Password</label>
                     <input type="password" class="form-control" name="password" minlength="8" required>
                   </div>
@@ -111,7 +114,7 @@
                   </div>
                   <p class="mt-4 text-sm text-center">
                     Don't have an account?
-                    <a href="sign-up.php" class="text-primary text-gradient font-weight-bold">Sign Up</a>
+                    <a href="sign-up.php" class="text-primary text-gradient font-weight-bold">Sign Up!</a>
                   </p>
                 </form>
               </div>

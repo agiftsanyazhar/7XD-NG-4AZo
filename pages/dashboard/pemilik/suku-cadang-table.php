@@ -2,13 +2,16 @@
   // Create database connection using config file
   include_once("../../../config/config.php");
 
+  // errror
+  mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+
   session_start();
   if($_SESSION['role'] == ""){
-    header("location:../../../sign-in.php?pesan=belumSignIn");
+    header("location:../../../index.php?pesan=belumSignIn");
   }
-  
-  // Fetch all users data from database
-  $result           = "SELECT * FROM suku_cadang";
+
+  $result           = "SELECT * FROM suku_cadang
+                      ORDER BY nama_suku_cadang";
   $suku_cadangs         = mysqli_query($mysqli, $result);
   $counter          = 1;
 ?>
@@ -55,34 +58,35 @@
   <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3   bg-gradient-dark" id="sidenav-main">
     <div class="sidenav-header">
       <i class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
-      <a class="navbar-brand m-0" href="../../../pages/dashboard/pemilik/dashboard.php">
+      <a class="navbar-brand m-0" href="../../../pages/dashboard/pemilik/suku-cadang-table.php">
         <img src="../../../assets/img/logo-ct.png" class="navbar-brand-img h-100" alt="main_logo">
-        <span class="ms-1 font-weight-bold text-white">Dashboard</span>
+        <span class="ms-1 font-weight-bold text-white">True Bengkel</span>
       </a>
     </div>
     <hr class="horizontal light mt-0 mb-2">
     <div class="collapse navbar-collapse  w-auto  max-height-vh-100" id="sidenav-collapse-main">
     <ul class="navbar-nav">
+        
         <li class="nav-item">
-          <a class="nav-link text-white" href="../../../pages/dashboard/pemilik/dashboard.php">
+          <a class="nav-link text-white bg-gradient-primary active" href="../../../pages/dashboard/pemilik/suku-cadang-table.php">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">dashboard</i>
-            </div>
-            <span class="nav-link-text ms-1">Dashboard</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white active bg-gradient-primary" href="../../../pages/dashboard/pemilik/suku-cadang-table.php">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">table_view</i>
+              <i class="material-icons opacity-10">store</i>
             </div>
             <span class="nav-link-text ms-1">Suku Cadang</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white " href="../../../pages/dashboard/pemilik/billing.php">
+          <a class="nav-link text-white" href="../../../pages/dashboard/pemilik/keranjang.php">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">receipt_long</i>
+              <i class="ni ni-cart"></i>
+            </div>
+            <span class="nav-link-text ms-1">Keranjang</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="../../../pages/dashboard/pemilik/billing.php">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">receipt</i>
             </div>
             <span class="nav-link-text ms-1">Billing</span>
           </a>
@@ -116,9 +120,9 @@
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
             <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Pages</a></li>
-            <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Tables</li>
+            <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Billing</li>
           </ol>
-          <h6 class="font-weight-bolder mb-0">Tables</h6>
+          <h6 class="font-weight-bolder mb-0">Billing</h6>
         </nav>
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
           <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -155,62 +159,32 @@
     <!-- End Navbar -->
     <div class="container-fluid py-4">
       <div class="row">
-        <div class="col-12">
-          <div class="card my-4">
-            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-              <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-                <h6 class="text-white text-capitalize ps-3">Suku Cadang</h6>
+        <?php foreach ($suku_cadangs as $suku_cadang) : ?>
+        <div class="col-md-6">
+          <div class="mt-4">
+            <div class="card mt-4">
+              <div class="card-header pb-0 px-3">
+                <h6 class="mb-0"><?php echo $suku_cadang["nama_suku_cadang"]; ?></h6>
               </div>
-            </div>
-            <div class="card-body px-0 pb-2">
-              <div class="table-responsive p-0">
-                <table class="table align-items-center mb-0">
-                  <thead>
-                    <tr>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 align-middle text-center">Numb</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">ID</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Nama Suku Cadang</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Harga Satuan</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 align-left text-left">Action</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <?php foreach ($suku_cadangs as $suku_cadang) : ?>
-                    <tr>
-                      <td class="align-middle text-center text-sm">
-                        <span class="text-secondary font-weight-bold text-xs"><?php echo $counter; ?></span>
-                      </td>
-                      <td>
-                        <span class="text-secondary font-weight-bold text-xs"><?php echo $suku_cadang["id_suku_cadang"]; ?></span>
-                      </td>
-                      <td>
-                        <div class="d-flex py-1">
-                          <div>
-                            <img src="../../../assets/img/ivana-squares.jpg" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
-                          </div>
-                          <div class="d-flex flex-column justify-content-center">
-                            <h6 class="mb-0 text-sm"><?php echo $suku_cadang["nama_suku_cadang"]; ?></h6>
-                            <p class="text-xs text-secondary mb-0">Stok: <?php echo $suku_cadang["stok"]; ?></p>
-                          </div>
-                        </div>
-                      </td>
-                      <td>
-                        <span class="text-secondary text-xs font-weight-bold"><?php echo $suku_cadang["harga_satuan"]; ?></span>
-                      </td>
-                      <td>
-                        <a class="btn btn-link text-success px-3 mb-0 text-secondary text-xs font-weight-bold" href="javascript:;"><i class="material-icons text-sm">add</i>Beli </a>
-                      </td>
-                    </tr>
-                    <?php 
-                      $counter++;
-                      endforeach; 
-                    ?>
-                  </tbody>
-                </table>
+              <div class="card-body pt-4 p-3">
+                <ul class="list-group">
+                  <li class="list-group-item border-0 d-flex p-3 mb-2 bg-gray-100 border-radius-lg">
+                    <span class="text-dark font-weight-bold px-4"><img src="../../../assets/gambar-suku-cadang/<?php echo $suku_cadang["gambar_suku_cadang"]; ?>?>" height="75" class="border-radius-lg" alt="user1"></span></span>
+                    <div class="d-flex flex-column">
+                      <span class="mb-3 text-xs">ID: <span class="text-dark font-weight-bold ms-sm-2"><?php echo $suku_cadang["id_suku_cadang"]; ?></span></span>
+                      <span class="mb-3 text-xs">Stok: <span class="text-dark ms-sm-2 font-weight-bold"><?php echo $suku_cadang["stok"]; ?></span></span>
+                      <span class="text-xs">Total Harga: <span class="text-dark ms-sm-2 font-weight-bold"><?php echo 'Rp'.number_format($suku_cadang["harga_satuan"]); ?></span></span>
+                    </div>
+                    <div class="ms-auto text-end">
+                      <a class="btn btn-link text-success px-3 mt-4 text-secondary text-xs font-weight-bold" href="../../../process/create/beli.php?id_suku_cadang=<?php echo$suku_cadang['id_suku_cadang']; ?>" onclick="return ('Apakah Anda yakin ingin menghapus data ini?')"><i class="ni ni-cart"></i>Beli</a>
+                    </div>
+                  </li>
+                </ul>
               </div>
             </div>
           </div>
         </div>
+        <?php endforeach; ?>
       </div>
       <footer class="footer py-4  ">
       <div class="container-fluid">

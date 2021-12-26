@@ -2,9 +2,12 @@
   // Create database connection using config file
   include_once("../../config/config.php");
 
+  // errror
+  mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+
   session_start();
   if($_SESSION['role'] == ""){
-    header("location:../../sign-in.php?pesan=belumSignIn");
+    header("location:../../index.php?pesan=belumSignIn");
   }
 ?>
 
@@ -52,7 +55,7 @@
       <i class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
       <a class="navbar-brand m-0" href="../../pages/dashboard/admin/dashboard.php">
         <img src="../../assets/img/logo-ct.png" class="navbar-brand-img h-100" alt="main_logo">
-        <span class="ms-1 font-weight-bold text-white">Dashboard</span>
+        <span class="ms-1 font-weight-bold text-white">True Bengkel</span>
       </a>
     </div>
     <hr class="horizontal light mt-0 mb-2">
@@ -67,19 +70,11 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white" href="../../pages/dashboard/admin/admin-table.php">
+          <a class="nav-link text-white  active bg-gradient-primary" href="../../pages/dashboard/admin/admin-table.php">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">table_view</i>
             </div>
             <span class="nav-link-text ms-1">Admin</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white " href="../../pages/dashboard/admin/detail-nota-suku-cadang-table.php">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">table_view</i>
-            </div>
-            <span class="nav-link-text ms-1">Detail Nota Suku Cadang</span>
           </a>
         </li>
         <li class="nav-item">
@@ -99,14 +94,6 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white " href="../../pages/dashboard/admin/meminta-table.php">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">table_view</i>
-            </div>
-            <span class="nav-link-text ms-1">Meminta</span>
-          </a>
-        </li>
-        <li class="nav-item">
           <a class="nav-link text-white " href="../../pages/dashboard/admin/nota-suku-cadang-table.php">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">table_view</i>
@@ -123,14 +110,6 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white " href="../../pages/dashboard/admin/pembayaran-table.php">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">table_view</i>
-            </div>
-            <span class="nav-link-text ms-1">Pembayaran</span>
-          </a>
-        </li>
-        <li class="nav-item">
           <a class="nav-link text-white " href="../../pages/dashboard/admin/pemilik-table.php">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">table_view</i>
@@ -139,23 +118,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white " href="../../pages/dashboard/admin/perintah-kerja-table.php">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">table_view</i>
-            </div>
-            <span class="nav-link-text ms-1">Perintah Kerja</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white " href="../../pages/dashboard/admin/pkb-table.php">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">table_view</i>
-            </div>
-            <span class="nav-link-text ms-1">PKB</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white " href="../../pages/dashboard/admin/suku-cadang-table.php">
+          <a class="nav-link text-white" href="../../pages/dashboard/admin/suku-cadang-table.php">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">table_view</i>
             </div>
@@ -163,7 +126,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white active bg-gradient-primary" href="../../pages/dashboard/admin/tipe-kendaraan-table.php">
+          <a class="nav-link text-white" href="../../pages/dashboard/admin/tipe-kendaraan-table.php">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">table_view</i>
             </div>
@@ -173,7 +136,7 @@
         <li class="nav-item">
           <a class="nav-link text-white " href="../../pages/dashboard/admin/billing.php">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">receipt_long</i>
+              <i class="material-icons opacity-10">receipt</i>
             </div>
             <span class="nav-link-text ms-1">Billing</span>
           </a>
@@ -204,25 +167,39 @@
     <div class="page-header align-items-start min-vh-100">
       <div class="container my-auto">
         <div class="row">
-          <div class="col-lg-4 col-md-8 col-12 mx-auto">
+          <div class="col-lg-6 col-md-8 col-12 mx-auto">
             <div class="card z-index-0 fadeIn3 fadeInBottom">
               <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                 <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
-                  <h4 class="text-white font-weight-bolder text-center mt-0 mb-0">Add Tipe Kendaraan</h4>
+                  <h4 class="text-white font-weight-bolder text-center mt-0 mb-0">Add Admin</h4>
                 </div>
               </div>
               <div class="card-body">
-                <form method="POST" action="../../process/create/tipe-kendaraan.php" role="form" class="text-start">
-                <div class="row">
-                    <div class="col-md-12">
-                      <div class="input-group input-group-outline my-1">
-                        <label class="form-label">Nama Tipe</label>
-                        <input type="text" class="form-control" name="nama_tipe" required>
-                      </div>
+                <form method="POST" action="../../process/create/admin.php" role="form" class="text-start" enctype="multipart/form-data">
+                <div class="row my-3">
+                  <div class="col-md-6">
+                    <div class="input-group input-group-outline">
+                      <label class="form-label">Nama</label>
+                      <input type="text" class="form-control" name="nama" required>
                     </div>
                   </div>
+                  <div class="col-md-6">
+                    <div class="input-group input-group-outline">
+                      <label class="form-label">Email</label>
+                      <input type="email" class="form-control" name="email" required>
+                    </div>
+                  </div>
+                </div>
+                <div class="row my-3">
+                  <div class="col-md-12">
+                    <div class="input-group input-group-outline">
+                      <label class="form-label">Password</label>
+                      <input type="password" class="form-control" name="password" required>
+                    </div>
+                  </div>
+                </div>
                   <div class="text-center">
-                    <button type="submit" class="btn bg-gradient-primary w-100 my-4 mb-2" name="add-tipe-kendaraan">Add</button>
+                    <button type="submit" class="btn bg-gradient-primary w-100 my-4 mb-2" name="add-admin">Add</button>
                   </div>
                 </form>
               </div>

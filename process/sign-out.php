@@ -3,5 +3,8 @@
 
     session_destroy();
 
-    header("location:../sign-in.php?pesan=successSignOut");
+    // errror
+    mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+
+    header("location:../index.php?pesan=successSignOut");
 ?>
