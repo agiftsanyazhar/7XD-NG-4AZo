@@ -11,17 +11,17 @@
   }
   
   // Fetch all users data from database
-  $counter          = 1;
+  $counter            = 1;
 
-  $query         =   "SELECT * FROM user WHERE email='". $_SESSION['email']."'";
-  $result         = mysqli_query($mysqli, $query);
+  $query              =   "SELECT * FROM user WHERE email='". $_SESSION['email']."'";
+  $result             = mysqli_query($mysqli, $query);
 
-  $row   = mysqli_fetch_assoc($result);
+  $row                = mysqli_fetch_assoc($result);
 
-  $_SESSION['nama']  = $row['nama'];
-  $_SESSION['email'] = $row['email'];
+  $_SESSION['nama']   = $row['nama'];
+  $_SESSION['email']  = $row['email'];
   $_SESSION['alamat'] = $row['alamat'];
-  $_SESSION['telp'] = $row['telp'];
+  $_SESSION['telp']   = $row['telp'];
 
   if(empty($_SESSION['keranjang'])){
     echo "<script>alert('Wah, keranjang belanjamu kosong. Yuk, isi dengan barang-barang impianmu!')</script>
@@ -148,7 +148,7 @@
           <ul class="navbar-nav  justify-content-end">
             <li class="nav-item d-flex align-items-center">
                 <i class="fa fa-user me-sm-1"></i>
-                <span class="d-sm-inline d-none"><?php echo $_SESSION['email']; ?></span>
+                <span class="d-sm-inline d-none"><?php echo $_SESSION['nama']; ?></span>
               </a>
             </li>
             <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
@@ -246,57 +246,87 @@
           <div class="card my-4">
             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
               <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-                <h6 class="text-white text-capitalize ps-3">Data Diri</h6>
+                <h6 class="text-white text-capitalize ps-3">Formulir</h6>
               </div>
             </div>
             <div class="card-body px-0 pb-0">
               <div class="table-responsive px-4">
-                <form method="POST" action="process/sign-up.php" role="form" class="text-start">
+                <form method="POST" action="../../../process/create/checkout.php" role="form" class="text-start">
                     <div class="row my-3">
                       <div class="col-md-6">
                         <div class="input-group input-group-outline">
-                          <label class="form-label">Nama</label>
-                          <input type="text" class="form-control" name="nama" >
+                          <input type="text" placeholder="Nama" class="form-control" name="nama" value="<?php echo $_SESSION['nama']; ?>" required>
                         </div>
                       </div>
                       <div class="col-md-6">
                         <div class="input-group input-group-outline">
-                          <label class="form-label">Alamat</label>
-                          <input type="text" class="form-control" name="alamat" >
+                          <input type="text" placeholder="Alamat" class="form-control" name="alamat" value="<?php echo $_SESSION['alamat']; ?>" required>
                         </div>
                       </div>
                     </div>
                     <div class="row my-3">
                       <div class="col-md-6">
                         <div class="input-group input-group-outline">
-                          <label class="form-label">Email</label>
-                          <input type="email" class="form-control" name="email" >
+                          <input type="email" placeholder="Email" class="form-control" name="email" value="<?php echo $_SESSION['email']; ?>" required>
                         </div>
                       </div>
                       <div class="col-md-6">
                         <div class="input-group input-group-outline">
-                          <label class="form-label">Telepon</label>
-                          <input type="number" class="form-control" name="telp" >
+                          <input type="number" placeholder="Telepon" class="form-control" name="telp" value="<?php echo $_SESSION['telp']; ?>" minlength="11" maxlength="15" required>
                         </div>
                       </div>
                     </div>
                     <div class="row my-3">
-                      <div class="col-md-12">
+                      <div class="col-md-6">
                         <div class="input-group input-group-outline">
-                          <label class="form-label">Password</label>
-                          <input type="password" class="form-control" name="password" minlength="8" required>
+                          <input type="text" placeholder="No. STNK (Contoh: XX-1234-XX)" class="form-control" name="no_stnk" maxlength="10" required>
                         </div>
                       </div>
-                      <!-- <div class="col-md-6">
+                      <div class="col-md-6">
                         <div class="input-group input-group-outline">
-                          <label class="form-label">Ulangi Password</label>
-                          <input type="password" class="form-control" name="repassword" minlength="8" required>
+                          <select class="form-control" name="id_tipe" required>
+                              <option value="" disabled selected hidden>Tipe Kendaraan</option>
+                              <?php
+                                $result          = (" SELECT * FROM tipe_kendaraan ");
+                                $tipe_kendaraans = mysqli_query($mysqli, $result);
+                                $row             = mysqli_fetch_assoc($tipe_kendaraans);
+
+                                foreach ($tipe_kendaraans as $tipe_kendaraan) :
+                              ?>
+                              <option value="<?php echo $tipe_kendaraan['id_tipe']; ?>"><?php echo $tipe_kendaraan['nama_tipe']; ?></option>
+                              <?php endforeach; ?>
+                          </select>
                         </div>
-                      </div> -->
+                      </div>
+                    </div>
+                    <div class="row my-3">
+                      <div class="col-md-6">
+                        <div class="input-group input-group-outline">
+                          <input type="text" placeholder="No. Mesin" class="form-control" name="no_mesin" maxlength="14" required>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="input-group input-group-outline">
+                          <input type="text" placeholder="No. Rangka" class="form-control" name="no_rangka" maxlength="18" required>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row my-3">
+                      <div class="col-md-6">
+                        <div class="input-group input-group-outline">
+                          <input type="text" placeholder="Warna" class="form-control" name="warna" >
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="input-group input-group-outline">
+                          <input type="number" placeholder="Tahun" class="form-control" name="tahun" maxlength="4" required>
+                        </div>
+                      </div>
                     </div>
                     <div class="text-center">
-                      <!-- <button type="submit" class="btn bg-gradient-primary w-100 my-4 mb-4" name="sign-up">Sign Up</button> -->
-                      <a class="btn bg-gradient-info w-30 my-4 mb-4" href=""><i class="material-icons opacity-10">receipt_long</i>&nbsp;&nbsp;Checkout</a>
+                      <div class="text-center">
+                        <button type="submit" class="btn bg-gradient-info my-4 mb-4" name="checkout"><i class="material-icons opacity-10">receipt_long</i>&nbsp;&nbsp;Checkout</button>
+                      </div>
                     </div>
                   </form>
               </div>

@@ -10,7 +10,7 @@
 
     if(isset($_GET['id_suku_cadang'])){
         $result         =   "DELETE FROM suku_cadang WHERE id_suku_cadang='" . $_GET['id_suku_cadang'] . "'";
-        $delete            = mysqli_query($mysqli, $result);
+        $delete         = mysqli_query($mysqli, $result);
 
         if($delete){
             header("location:../../pages/dashboard/admin/suku-cadang-table.php");

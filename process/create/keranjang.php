@@ -16,6 +16,6 @@
         $_SESSION['keranjang'][$id] = 1;
     }
 
-    echo "<script>alert('Produk telah ditambahkan ke keranjang belanja')</script>
+    echo "<script>alert('Produk telah ditambahkan ke keranjang belanja!')</script>
         <script>location='../../pages/dashboard/pemilik/suku-cadang-table.php'</script>";
 ?>

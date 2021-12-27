@@ -11,7 +11,7 @@
         $email          = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);          //$_POST['email'];
         $password       = md5($_POST['password']);          //md5($_POST['password']);
         // $repassword     = md5($_POST['repassword']);          //md5($_POST['password']);
-        $role           = "pemilik";          //md5($_POST['password']);
+        $role           = "pemilik";
         $alamat         = filter_input(INPUT_POST, 'alamat', FILTER_SANITIZE_STRING);
         $telp           = $_POST['telp'];
 
@@ -42,7 +42,6 @@
                 header("location:../index.php");
             }
         }
-        
 
         // $stmt           = $mysqli->prepare($result);
 

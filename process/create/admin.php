@@ -16,7 +16,7 @@
         $email          = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);          //$_POST['email'];
         $password       = md5($_POST['password']);          //md5($_POST['password']);
         // $repassword     = md5($_POST['repassword']);          //md5($_POST['password']);
-        $role           = "admin";          //md5($_POST['password']);
+        $role           = "admin";
 
         $sql_cek        = mysqli_query($mysqli,"SELECT * FROM user WHERE email='$email' OR telp='$telp'");
         $r_cek          = mysqli_num_rows($sql_cek);
@@ -45,7 +45,6 @@
                 header("location:../../pages/dashboard/admin/admin-table.php");
             }
         }
-        
 
         // $stmt           = $mysqli->prepare($result);
 

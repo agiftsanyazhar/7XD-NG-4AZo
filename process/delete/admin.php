@@ -14,7 +14,7 @@
 
     if(isset($_GET['id_user'])){
         $result         =   "DELETE FROM user WHERE id_user='" . $_GET['id_user'] . "' ";
-        $delete            = mysqli_query($mysqli, $result);
+        $delete         = mysqli_query($mysqli, $result);
 
         if($delete){
             header("location:../../pages/dashboard/admin/admin-table.php");

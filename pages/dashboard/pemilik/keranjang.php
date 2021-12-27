@@ -10,17 +10,17 @@
     header("location:../../../index.php?pesan=belumSignIn");
   }
 
-  $counter          = 1;
+  $counter            = 1;
 
-  $query         =   "SELECT * FROM user WHERE email='". $_SESSION['email']."'";
-  $result         = mysqli_query($mysqli, $query);
+  $query              =   "SELECT * FROM user WHERE email='". $_SESSION['email']."'";
+  $result             = mysqli_query($mysqli, $query);
 
-  $row   = mysqli_fetch_assoc($result);
+  $row                = mysqli_fetch_assoc($result);
 
-  $_SESSION['nama']  = $row['nama'];
-  $_SESSION['email'] = $row['email'];
+  $_SESSION['nama']   = $row['nama'];
+  $_SESSION['email']  = $row['email'];
   $_SESSION['alamat'] = $row['alamat'];
-  $_SESSION['telp'] = $row['telp'];
+  $_SESSION['telp']   = $row['telp'];
 
   if(empty($_SESSION['keranjang'])){
     echo "<script>alert('Wah, keranjang belanjamu kosong. Yuk, isi dengan barang-barang impianmu!')</script>
@@ -146,7 +146,7 @@
           <ul class="navbar-nav  justify-content-end">
             <li class="nav-item d-flex align-items-center">
                 <i class="fa fa-user me-sm-1"></i>
-                <span class="d-sm-inline d-none"><?php echo $_SESSION['email']; ?></span>
+                <span class="d-sm-inline d-none"><?php echo $_SESSION['nama']; ?></span>
               </a>
             </li>
             <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
@@ -193,10 +193,10 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <?php foreach ($_SESSION['keranjang'] as $id => $qty) : ?>
+                    <?php foreach ($_SESSION['keranjang'] as $id_produk => $qty) : ?>
                     <?php
                       $result           = "SELECT * FROM suku_cadang
-                                          WHERE id_suku_cadang='$id'";
+                                          WHERE id_suku_cadang='$id_produk'";
                       $suku_cadangs     = mysqli_query($mysqli, $result);
                       $row              = mysqli_fetch_assoc($suku_cadangs);
                       $subtotal         = $row['harga_satuan']*$qty;
@@ -222,7 +222,7 @@
                         <span class="text-secondary text-xs font-weight-bold"><?php echo "Rp".number_format(($subtotal), 2, ',', '.'); ?></span>
                       </td>
                       <td>
-                        <a class="btn btn-link text-danger px-3 mb-0" href="../../../process/delete/keranjang.php?id_suku_cadang=<?php echo $id; ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus produk ini?')"><i class="material-icons text-sm me-2">delete</i>Delete</a>
+                        <a class="btn btn-link text-danger px-3 mb-0" href="../../../process/delete/keranjang.php?id_suku_cadang=<?php echo $id_produk; ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus produk ini?')"><i class="material-icons text-sm me-2">delete</i>Delete</a>
                       </td>
                     </tr>
                     <?php

@@ -99,7 +99,7 @@
                 <form method="POST" action="process/sign-in.php" role="form" class="text-start">
                   <div class="input-group input-group-outline my-3">
                     <label class="form-label">Email</label>
-                    <input type="email" class="form-control" name="email" >
+                    <input type="email" class="form-control" name="email" required>
                   </div>
                   <div class="input-group input-group-outline my-3">
                     <label class="form-label">Password</label>

@@ -11,13 +11,13 @@
   }
 
   // Fetch all users data from database
-  $query         =   "SELECT * FROM user WHERE email='". $_SESSION['email']."'";
-  $result         = mysqli_query($mysqli, $query);
+  $query              =   "SELECT * FROM user WHERE email='". $_SESSION['email']."'";
+  $result             = mysqli_query($mysqli, $query);
 
-  $row   = mysqli_fetch_assoc($result);
+  $row                = mysqli_fetch_assoc($result);
 
-  $_SESSION['nama']  = $row['nama'];
-  $_SESSION['email'] = $row['email'];
+  $_SESSION['nama']   = $row['nama'];
+  $_SESSION['email']  = $row['email'];
 ?>
 
 <!--
@@ -209,7 +209,7 @@
                   <div class="col-md-6">
                     <div class="input-group input-group-outline">
                         <label class="form-label">Stok</label>
-                        <input type="number" class="form-control" name="stok" required>
+                        <input type="number" class="form-control" min="1" name="stok" required>
                     </div>
                   </div>
                 </div>

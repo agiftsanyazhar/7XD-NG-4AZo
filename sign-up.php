@@ -88,13 +88,13 @@
                     <div class="col-md-6">
                       <div class="input-group input-group-outline">
                         <label class="form-label">Nama</label>
-                        <input type="text" class="form-control" name="nama" >
+                        <input type="text" class="form-control" name="nama" required>
                       </div>
                     </div>
                     <div class="col-md-6">
                       <div class="input-group input-group-outline">
                         <label class="form-label">Alamat</label>
-                        <input type="text" class="form-control" name="alamat" >
+                        <input type="text" class="form-control" name="alamat" required>
                       </div>
                     </div>
                   </div>
@@ -102,13 +102,13 @@
                     <div class="col-md-6">
                       <div class="input-group input-group-outline">
                         <label class="form-label">Email</label>
-                        <input type="email" class="form-control" name="email" >
+                        <input type="email" class="form-control" name="email" required>
                       </div>
                     </div>
                     <div class="col-md-6">
                       <div class="input-group input-group-outline">
                         <label class="form-label">Telepon</label>
-                        <input type="number" class="form-control" name="telp" >
+                        <input type="number" class="form-control" name="telp" minlength="11" maxlength="15" required>
                       </div>
                     </div>
                   </div>
@@ -116,7 +116,7 @@
                     <div class="col-md-12">
                       <div class="input-group input-group-outline">
                         <label class="form-label">Password</label>
-                        <input type="password" class="form-control" name="password" minlength="8" required>
+                        <input type="password" class="form-control" name="password" minlength="8" maxlength="32" required>
                       </div>
                     </div>
                     <!-- <div class="col-md-6">

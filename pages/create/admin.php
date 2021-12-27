@@ -11,13 +11,13 @@
   }
 
   // Fetch all users data from database
-  $query         =   "SELECT * FROM user WHERE email='". $_SESSION['email']."'";
-  $result         = mysqli_query($mysqli, $query);
+  $query              =   "SELECT * FROM user WHERE email='". $_SESSION['email']."'";
+  $result             = mysqli_query($mysqli, $query);
 
-  $row   = mysqli_fetch_assoc($result);
+  $row                = mysqli_fetch_assoc($result);
 
-  $_SESSION['nama']  = $row['nama'];
-  $_SESSION['email'] = $row['email'];
+  $_SESSION['nama']   = $row['nama'];
+  $_SESSION['email']  = $row['email'];
 ?>
 
 <!--
@@ -203,7 +203,7 @@
                   <div class="col-md-12">
                     <div class="input-group input-group-outline">
                       <label class="form-label">Password</label>
-                      <input type="password" class="form-control" name="password" required>
+                      <input type="password" class="form-control" name="password" minlength="8" maxlength="32" required>
                     </div>
                   </div>
                 </div>

@@ -10,20 +10,20 @@
     header("location:../../../index.php?pesan=belumSignIn");
   }
 
-  $result           = "SELECT * FROM suku_cadang
-                      ORDER BY nama_suku_cadang";
-  $suku_cadangs         = mysqli_query($mysqli, $result);
-  $counter          = 1;
+  $result             = "SELECT * FROM suku_cadang
+                        ORDER BY nama_suku_cadang";
+  $suku_cadangs       = mysqli_query($mysqli, $result);
+  $counter            = 1;
 
-  $query         =   "SELECT * FROM user WHERE email='". $_SESSION['email']."'";
-  $result         = mysqli_query($mysqli, $query);
+  $query              =   "SELECT * FROM user WHERE email='". $_SESSION['email']."'";
+  $result             = mysqli_query($mysqli, $query);
 
-  $row   = mysqli_fetch_assoc($result);
+  $row                = mysqli_fetch_assoc($result);
 
-  $_SESSION['nama']  = $row['nama'];
-  $_SESSION['email'] = $row['email'];
+  $_SESSION['nama']   = $row['nama'];
+  $_SESSION['email']  = $row['email'];
   $_SESSION['alamat'] = $row['alamat'];
-  $_SESSION['telp'] = $row['telp'];
+  $_SESSION['telp']   = $row['telp'];
 ?>
 
 <!--
@@ -184,9 +184,9 @@
                       <span class="mb-3 text-xs">ID: <span class="text-dark font-weight-bold ms-sm-2"><?php echo $suku_cadang["id_suku_cadang"]; ?></span></span>
                       <span class="mb-3 text-xs">Stok: <span class="text-dark ms-sm-2 font-weight-bold"><?php echo $suku_cadang["stok"]; ?></span></span>
                       <span class="text-xs">Total Harga: <span class="text-dark ms-sm-2 font-weight-bold"><?php echo 'Rp'.number_format($suku_cadang["harga_satuan"], 2, ',', '.'); ?></span></span>
-                    </div>
+                    </div>  
                     <div class="ms-auto text-end">
-                      <a class="btn btn-link text-success px-3 mt-4 text-secondary text-xs font-weight-bold" href="../../../process/create/keranjang.php?id_suku_cadang=<?php echo$suku_cadang['id_suku_cadang']; ?>" onclick="return ('Apakah Anda yakin ingin menghapus data ini?')"><i class="ni ni-cart"></i>Beli</a>
+                      <a class="btn btn-link text-success px-3 mb-3 text-secondary text-xs font-weight-bold" href="../../../process/create/keranjang.php?id_suku_cadang=<?php echo$suku_cadang['id_suku_cadang']; ?>" onclick="return ('Apakah Anda yakin ingin menghapus data ini?')"><i class="ni ni-cart"></i>Beli</a>
                     </div>
                   </li>
                 </ul>

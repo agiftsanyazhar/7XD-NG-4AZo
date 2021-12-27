@@ -10,19 +10,19 @@
     header("location:../../../index.php?pesan=belumSignIn");
   }
 
-  $result         = "SELECT * FROM billing";
-  $bills          = mysqli_query($mysqli, $result);
+  $result               = "SELECT * FROM billing";
+  $bills                = mysqli_query($mysqli, $result);
 
   // Fetch all users data from database
-  $query         =   "SELECT * FROM user WHERE email='". $_SESSION['email']."'";
-  $result         = mysqli_query($mysqli, $query);
+  $query                =   "SELECT * FROM user WHERE email='". $_SESSION['email']."'";
+  $result               = mysqli_query($mysqli, $query);
 
-  $row   = mysqli_fetch_assoc($result);
+  $row                  = mysqli_fetch_assoc($result);
 
-  $_SESSION['nama']  = $row['nama'];
-  $_SESSION['email'] = $row['email'];
-  $_SESSION['alamat'] = $row['alamat'];
-  $_SESSION['telp'] = $row['telp'];
+  $_SESSION['nama']     = $row['nama'];
+  $_SESSION['email']    = $row['email'];
+  $_SESSION['alamat']   = $row['alamat'];
+  $_SESSION['telp']     = $row['telp'];
 ?>
 
 <!--
