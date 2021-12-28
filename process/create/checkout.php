@@ -52,17 +52,26 @@
         $execute4               = mysqli_query($mysqli, $query4);
         $row_nsc                = mysqli_fetch_assoc($execute4);
         $latest_id_nsc          = $row_nsc['no_nota_suku_cadang'];
-
         foreach ($_SESSION['keranjang'] as $id_produk => $qty) {
-            // 8. Insert into biasa
-            $query5                 = "INSERT INTO detail_nota_suku_cadang VALUES ('$latest_id_nsc', '$id_produk', $qty)";
-            $execute5               = mysqli_query($mysqli, $query5);
+            // 8. Nyari nama_suku_cadang & harga_satuan kemudian insert into biasa
+            $query5             = "SELECT * FROM suku_cadang WHERE id_suku_cadang='$id_produk'";
+            $execute5           = mysqli_query($mysqli, $query5);
+            $row_sc             = mysqli_fetch_assoc($execute5);
+            $nama_sc            = $row_sc['nama_suku_cadang'];
+            $harga_sc           = $row_sc['harga_satuan'];
+            $query6             = "INSERT INTO detail_nota_suku_cadang
+                                  VALUES ('$latest_id_nsc', '$id_produk', '$nama_sc', '$harga_sc', $qty)";
+            $execute6           = mysqli_query($mysqli, $query6);
         }
+
+        $resullt                = "INSERT INTO pkb (no_stnk, no_nota_suku_cadang)
+                                   VALUES ('$stnk', '$latest_id_nsc')";
+        $add                    = mysqli_query($mysqli, $resullt);
 
         unset($_SESSION['keranjang']);
 
         // JANGAN LUPA D GANTI!!!
-        if($execute5){
+        if($add){
             echo "<script>alert('Checkout Berhasil. Silakan melunasi pembayaran!')</script>
             <script>location='../../pages/dashboard/pemilik/billing.php'</script>";
         }

@@ -170,16 +170,18 @@
         <div class="mt-4">
           <div class="card">
             <div class="card-header pb-0 px-3">
-              <h6 class="mb-0">Billing Information</h6>
+              <h6 class="mb-0">History</h6>
             </div>
             <div class="card-body pt-4 p-3">
               <ul class="list-group">
                 <?php foreach ($bills as $bill) : ?>
                 <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg">
                   <div class="d-flex flex-column">
-                    <h6 class="mb-3 text-sm"><?php echo $bill["nama_pemilik"]; ?></h6>
+                    <h6 class="mb-3 text-sm"><?php echo $bill["no_nota_suku_cadang"]; ?></h6>
+                    <span class="mb-2 text-xs">Nama: <span class="text-dark font-weight-bold ms-sm-2"><?php echo $bill["nama_pemilik"]; ?></span></span>
                     <span class="mb-2 text-xs">No. STNK: <span class="text-dark font-weight-bold ms-sm-2"><?php echo $bill["no_stnk"]; ?></span></span>
-                    <span class="mb-2 text-xs">Tanggal Terima: <span class="text-dark ms-sm-2 font-weight-bold"><?php echo $bill["tgl_terima"]; ?></span></span>
+                    <span class="mb-2 text-xs">Tanggal Pesan: <span class="text-dark ms-sm-2 font-weight-bold"><?php echo $bill["tgl_pesan"]; ?></span></span>
+                    <span class="mb-2 text-xs">Tanggal Bayar: <span class="text-dark ms-sm-2 font-weight-bold"><?php echo $bill["tgl_bayar"]; ?></span></span>
                     <span class="text-xs">Total Harga: <span class="text-dark ms-sm-2 font-weight-bold"><?php echo 'Rp'.number_format($bill["total_harga"], 2, ',', '.'); ?></span></span>
                   </div>
                 </li>

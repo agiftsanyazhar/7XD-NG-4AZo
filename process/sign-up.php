@@ -7,10 +7,10 @@
 
     if(isset($_POST['sign-up'])){
         // menangkap data yang dikirim dari form
-        $nama           = filter_input(INPUT_POST, 'nama', FILTER_SANITIZE_STRING);          //$_POST['nama'];
-        $email          = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);          //$_POST['email'];
-        $password       = md5($_POST['password']);          //md5($_POST['password']);
-        // $repassword     = md5($_POST['repassword']);          //md5($_POST['password']);
+        $nama           = filter_input(INPUT_POST, 'nama', FILTER_SANITIZE_STRING);         //$_POST['nama'];
+        $email          = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);         //$_POST['email'];
+        $password       = md5($_POST['password']);                                          //md5($_POST['password']);
+        // $repassword     = md5($_POST['repassword']);                                     //md5($_POST['password']);
         $role           = "pemilik";
         $alamat         = filter_input(INPUT_POST, 'alamat', FILTER_SANITIZE_STRING);
         $telp           = $_POST['telp'];
