@@ -29,7 +29,7 @@
                                 INSERT INTO Pemilik
                                 SELECT id_user, nama, email, PASSWORD, alamat, telp FROM USER
                                 ORDER BY id_user DESC LIMIT 1";
-            $signup        = $mysqli->multi_query($query);
+            $signup        = $mysqli->query($query);
 
             do {
                 if ($result = $mysqli->store_result()) {

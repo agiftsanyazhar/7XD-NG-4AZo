@@ -19,7 +19,7 @@
         move_uploaded_file($lokasi, '../../assets/gambar-suku-cadang/'.$gambar);
 
         $result         =   "INSERT INTO suku_cadang VALUES ('$id', '$nama', '$gambar', $stok, $harga)";
-        $add            = mysqli_query($mysqli, $result);
+        $add            =   mysqli_query($mysqli, $result);
 
         if($add){
             header("location:../../pages/dashboard/admin/suku-cadang-table.php");

@@ -10,7 +10,7 @@
     header("location:../../../index.php?pesan=belumSignIn");
   }
 
-  $result             = "SELECT * FROM billing";
+  $result             = "SELECT * FROM billing_vu";
   $bills              = mysqli_query($mysqli, $result);
 
   $query              =   "SELECT * FROM user WHERE email='". $_SESSION['email']."'";
@@ -179,10 +179,19 @@
                   <div class="d-flex flex-column">
                     <h6 class="mb-3 text-sm"><?php echo $bill["no_nota_suku_cadang"]; ?></h6>
                     <span class="mb-2 text-xs">Nama: <span class="text-dark font-weight-bold ms-sm-2"><?php echo $bill["nama_pemilik"]; ?></span></span>
-                    <span class="mb-2 text-xs">No. STNK: <span class="text-dark font-weight-bold ms-sm-2"><?php echo $bill["no_stnk"]; ?></span></span>
-                    <span class="mb-2 text-xs">Tanggal Pesan: <span class="text-dark ms-sm-2 font-weight-bold"><?php echo $bill["tgl_pesan"]; ?></span></span>
-                    <span class="mb-2 text-xs">Tanggal Bayar: <span class="text-dark ms-sm-2 font-weight-bold"><?php echo $bill["tgl_bayar"]; ?></span></span>
-                    <span class="text-xs">Total Harga: <span class="text-dark ms-sm-2 font-weight-bold"><?php echo 'Rp'.number_format($bill["total_harga"], 2, ',', '.'); ?></span></span>
+                    <span class="mb-2 text-xs">Tanggal Pesan: <span class="text-dark ms-sm-2 font-weight-bold"><?php echo $bill["tgl_pesan"]; ?> <?php echo $bill["jam_pesan"]; ?></span></span>
+                    <span class="mb-2 text-xs">Status: <span class="text-dark ms-sm-2 font-weight-bold">
+                      <?php 
+                        if($bill["status"] == 0){
+                          echo "Belum Bayar";
+                        } else {
+                          echo "Sudah Bayar";
+                        }
+                      ?>
+                    </span></span>
+                  </div>
+                  <div class="ms-auto text-end">
+                    <a class="btn btn-link text-info text-gradient px-3 mb-0" href="detail-pesanan.php?id_pkb=<?php echo $bill['id_pkb']; ?>"><i class="material-icons text-sm me-2">visibility</i>Show</a>
                   </div>
                 </li>
                 <?php endforeach; ?>

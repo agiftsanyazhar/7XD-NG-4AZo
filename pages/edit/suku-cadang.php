@@ -244,7 +244,7 @@
                       $gambar         = $_FILES['gambar_suku_cadang']['name'];
                       $lokasi         = $_FILES['gambar_suku_cadang']['tmp_name'];
                       if(!empty($lokasi)){
-                          move_uploaded_file($lokasi, '../../assets/gambar-suku-cadang/'.$gambar);
+                          move_uploaded_file($lokasi, '/'.$gambar);
 
                           $result         =   "UPDATE suku_cadang
                                               SET nama_suku_cadang='$nama', gambar_suku_cadang='$gambar', stok='$stok', harga_satuan='$harga'
