@@ -117,6 +117,14 @@
           </a>
         </li>
         <li class="nav-item">
+          <a class="nav-link text-white" href="../../../pages/dashboard/pemilik/kendaraan-table.php">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">airport_shuttle</i>
+            </div>
+            <span class="nav-link-text ms-1">Kendaraan</span>
+          </a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link text-white" href="../../../process/sign-out.php">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">exit_to_app</i>
@@ -194,8 +202,15 @@
                     <span class="mb-2 text-xs">Nama: <span class="text-dark font-weight-bold ms-sm-2"><?php echo $det_pesan["nama_pemilik"]; ?></span></span>
                     <span class="mb-2 text-xs">No. STNK: <span class="text-dark font-weight-bold ms-sm-2"><?php echo $det_pesan["no_stnk"]; ?></span></span>
                     <span class="mb-2 text-xs">Tanggal Pesan: <span class="text-dark ms-sm-2 font-weight-bold"><?php echo $det_pesan["tgl_pesan"]; ?> <?php echo $det_pesan["jam_pesan"]; ?></span></span>
-                    <span class="mb-2 text-xs">Tanggal Bayar: <span class="text-dark ms-sm-2 font-weight-bold"><?php echo $det_pesan["tgl_bayar"]; ?> <?php echo $det_pesan["jam_bayar"]; ?></span></span>
-                    <span class="mb-2 text-xs">Status: <span class="text-dark ms-sm-2 font-weight-bold">
+                    <span class="mb-2 text-xs">Tanggal Bayar: <span class="text-dark ms-sm-2 font-weight-bold">
+                      <?php 
+                        if($det_pesan["status"] == 0){
+                          echo "-";
+                        } else {
+                          echo $det_pesan["tgl_bayar"].$det_pesan["jam_bayar"];
+                        }
+                      ?>
+                    </span></span>                    <span class="mb-2 text-xs">Status: <span class="text-dark ms-sm-2 font-weight-bold">
                       <?php 
                         if($det_pesan["status"] == 0){
                           echo "Belum Bayar";
@@ -278,67 +293,68 @@
           </div>
         </div>
       </div>
-      <div class="row">
-        <div class="col-12">
-          <div class="card my-4">
-            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-              <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-                <h6 class="text-white text-capitalize ps-3">Upload Bukti Pembayaran</h6>
-              </div>
-            </div>
-            <div class="card-body px-0 pb-0">
-              <div class="table-responsive px-4">
-                <form method="POST" action="" role="form" class="text-start" enctype="multipart/form-data">
-                  <div class="row my-3">
-                    <div class="col-md-12">
-                      <div class="input-group input-group-outline">
-                        <input type="file" class="form-control" name="bukti_pembayaran" required>
+      <?php 
+        if($det_pesan["status"] == 0){ ?>
+          <div class="row">
+            <div class="col-12">
+              <div class="card my-4">
+                <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                  <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+                    <h6 class="text-white text-capitalize ps-3">Upload Bukti Pembayaran</h6>
+                  </div>
+                </div>
+                <div class="card-body px-0 pb-0">
+                  <div class="table-responsive px-4">
+                    <form method="POST" action="" role="form" class="text-start" enctype="multipart/form-data">
+                      <div class="row my-3">
+                        <div class="col-md-12">
+                          <div class="input-group input-group-outline">
+                            <input type="file" class="form-control" name="bukti_pembayaran" required>
+                          </div>
+                        </div>
                       </div>
-                    </div>
+                      <div class="text-center">
+                        <div class="text-center">
+                          <button type="submit" class="btn bg-gradient-info my-4 mb-4" name="bayar"><i class="material-icons opacity-10">attach_money</i>&nbsp;&nbsp;Pay Now</button>
+                        </div>
+                      </div>
+                    </form>
                   </div>
-                  <div class="text-center">
-                    <div class="text-center">
-                      <button type="submit" class="btn bg-gradient-info my-4 mb-4" name="bayar"><i class="material-icons opacity-10">attach_money</i>&nbsp;&nbsp;Pay Now</button>
-                    </div>
-                  </div>
-                </form>
+                </div>
+                <?php
+                  include_once('../../../config/config.php');
+
+                  mysqli_report(MYSQLI_REPORT_STRICT | MYSQLI_REPORT_ERROR);
+
+                  if(isset($_POST['bayar'])){
+                      $gambar         = $_FILES['bukti_pembayaran']['name'];
+                      $lokasi         = $_FILES['bukti_pembayaran']['tmp_name'];
+                      move_uploaded_file($lokasi, '../../../assets/bukti-pembayaran/'.$gambar);
+
+                      $result         = "UPDATE pembayaran
+                                        SET tgl_bayar=SYSDATE(), jam_bayar=CURRENT_TIMESTAMP, bukti_pembayaran='$gambar'
+                                        WHERE id_pkb='".$_GET['id_pkb']."'";
+                      $update         = mysqli_query($mysqli, $result);
+
+                      $status         = "UPDATE pkb
+                                        SET status='1'
+                                        WHERE id_pkb='".$_GET['id_pkb']."'";
+                      $execute        = mysqli_query($mysqli, $status);
+
+                      if($execute){
+                        echo "<script>alert('Pembayaran Berhasil!')</script>
+                        <script>location='billing.php'</script>";
+                    }
+                  }
+                ?>
               </div>
             </div>
-            <?php
-              if(isset($_POST['bayar'])){
-                  $gambar          = $_FILES['bukti_pembayaran']['name'];
-                  $lokasi          = $_FILES['bukti_pembayaran']['tmp_name'];
-                  move_uploaded_file($lokasi, '../../../assets/bukti-pembayaran/'.$gambar);
-
-                  // $result         = "UPDATE pembayaran
-                  //                   SET tgl_bayar=SYSDATE(), jam_bayar=CURRENT_TIMESTAMP, bukti_pembayaran='$gambar'
-                  //                   WHERE id_pkb='".$_GET['id_pkb']."'";
-                  // $update         = mysqli_query($mysqli, $result);
-
-                  $kueri                  =  mysqli_query($mysqli,
-                                              "CREATE OR REPLACE FUNCTION total(id_nsc VARCHAR(7))
-                                              RETURNS INT
-                                              BEGIN
-                                                  DECLARE hitung INT;
-                                                  SELECT SUM(dnsc.`banyak`*sc.`harga_satuan`) INTO hitung
-                                                  FROM Detail_Nota_Suku_Cadang dnsc JOIN Suku_Cadang sc ON dnsc.id_suku_cadang = sc.id_suku_cadang
-                                                  WHERE dnsc.no_nota_suku_cadang = id_nsc;
-                                              RETURN hitung;
-                                              END;");
-                  $hasil                  =  mysqli_query($mysqli, "SELECT total('no_nota_suku_cadang') AS 'Total'");
-                  $row_total              =  mysqli_fetch_assoc($hasil);
-                  $total                  =  $row_total['Total'];
-                  $resullt1               =  "INSERT INTO pembayaran (id_pkb, total_harga, bukti_pembayaran)
-                                            VALUES ('".$_GET['id_pkb']."', '$total', '$gambar')";
-                  $add_byr                =  mysqli_query($mysqli, $resullt1);
-
-                  echo "<script>alert('Pembayaran berhasil! Terima kasih telah berbelanja❤❤❤')</script>
-                    <script>('locattion:billing.php/')</script>";
-              }
-            ?>
           </div>
-        </div>
-      </div>
+  <?php } else {
+          echo NULL;
+        }
+      ?>
+      
       <footer class="footer py-4  ">
       <div class="container-fluid">
         <div class="row align-items-center justify-content-lg-between">

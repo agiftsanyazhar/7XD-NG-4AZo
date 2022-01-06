@@ -117,6 +117,14 @@
           </a>
         </li>
         <li class="nav-item">
+          <a class="nav-link text-white" href="../../../pages/dashboard/pemilik/kendaraan-table.php">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">airport_shuttle</i>
+            </div>
+            <span class="nav-link-text ms-1">Kendaraan</span>
+          </a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link text-white" href="../../../process/sign-out.php">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">exit_to_app</i>
@@ -193,7 +201,15 @@
                     <span class="mb-2 text-xs">Nama: <span class="text-dark font-weight-bold ms-sm-2"><?php echo $det_pesan["nama_pemilik"]; ?></span></span>
                     <span class="mb-2 text-xs">No. STNK: <span class="text-dark font-weight-bold ms-sm-2"><?php echo $det_pesan["no_stnk"]; ?></span></span>
                     <span class="mb-2 text-xs">Tanggal Pesan: <span class="text-dark ms-sm-2 font-weight-bold"><?php echo $det_pesan["tgl_pesan"]; ?> <?php echo $det_pesan["jam_pesan"]; ?></span></span>
-                    <span class="mb-2 text-xs">Tanggal Bayar: <span class="text-dark ms-sm-2 font-weight-bold"><?php echo $det_pesan["tgl_bayar"]; ?> <?php echo $det_pesan["jam_bayar"]; ?></span></span>
+                    <span class="mb-2 text-xs">Tanggal Bayar: <span class="text-dark ms-sm-2 font-weight-bold">
+                      <?php 
+                        if($det_pesan["status"] == 0){
+                          echo "-";
+                        } else {
+                          echo $det_pesan["tgl_bayar"]." ".$det_pesan["jam_bayar"];
+                        }
+                      ?>
+                    </span></span>
                     <span class="mb-2 text-xs">Status: <span class="text-dark ms-sm-2 font-weight-bold">
                       <?php 
                         if($det_pesan["status"] == 0){
@@ -209,6 +225,7 @@
                         if($det_pesan["status"] == 0){ ?>
                           <a class="btn btn-link text-danger text-gradient px-3 mb-0" href="javascript:;"><i class="material-icons text-sm me-2">info</i>Belum Bayar</a>
                   <?php } else { ?>
+                          <a class="btn btn-link text-info text-gradient px-3 mb-0" href="cetak-detail-pesanan.php?id_pkb=<?php echo $_GET['id_pkb']; ?>" target="_blank"><i class="material-icons text-sm me-2">print</i>Cetak</a>
                           <a class="btn btn-link text-success text-gradient px-3 mb-0" href="javascript:;"><i class="material-icons text-sm me-2">info</i>Sudah Bayar</a>
                   <?php } ?>
                   </div>
@@ -278,7 +295,13 @@
           </div>
         </div>
       </div>
-      <a class="btn bg-gradient-info mb-3 mt-4" href="bayar.php?id_pkb=<?php echo $det_pesanan['id_pkb']; ?>"><i class="material-icons text-sm">attach_money</i>&nbsp;&nbsp;Pay</a>
+      <?php 
+        if($det_pesan["status"] == 0){ ?>
+          <a class="btn bg-gradient-info mb-3 mt-4" href="bayar.php?id_pkb=<?php echo $det_pesanan['id_pkb']; ?>"><i class="material-icons text-sm">attach_money</i>&nbsp;&nbsp;Pay</a>
+  <?php } else {
+          echo NULL;
+        }
+      ?>
       <footer class="footer py-4  ">
       <div class="container-fluid">
         <div class="row align-items-center justify-content-lg-between">

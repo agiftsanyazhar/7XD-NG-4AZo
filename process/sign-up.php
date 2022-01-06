@@ -22,14 +22,14 @@
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 Email atau Telepon Telah Terdaftar! Silakan Sign In
             </div>
-            <meta http-equiv="refresh" content="1;url=../index.php">
+            <meta http-equiv="refresh" content="3;url=../index.php">
 <?php        } else {
             $query         =    "INSERT INTO user (nama, email, password, role, alamat, telp)
                                 VALUES ('$nama', '$email', '$password', '$role', '$alamat', '$telp');
-                                INSERT INTO Pemilik
-                                SELECT id_user, nama, email, PASSWORD, alamat, telp FROM USER
+                                INSERT INTO pemilik (id_user, nama_pemilik, email, password, alamat_pemilik, telp_pemilik)
+                                SELECT id_user, nama, email, password, alamat, telp FROM user
                                 ORDER BY id_user DESC LIMIT 1";
-            $signup        = $mysqli->query($query);
+            $signup        = $mysqli->multi_query($query);
 
             do {
                 if ($result = $mysqli->store_result()) {
@@ -39,7 +39,7 @@
             } while ($mysqli->next_result());
 
             if($signup){
-                header("location:../index.php");
+                header("location:../pages/create/kendaraan-sign-up.php?pesan=successSignUp");
             }
         }
 

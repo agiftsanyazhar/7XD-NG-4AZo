@@ -63,36 +63,19 @@
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
                           Sign Out Berhasil!
                         </div>
-                <?php } else if($_GET['pesan'] == "successSignUp"){ ?>
-                        <div class="alert alert-success alert-dismissible fade show" role="alert">
-                          Sign Up Berhasil! Silakan Sign In
-                        </div>
                 <?php } else if($_GET['pesan'] == "belumSignIn"){ ?>
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
                           Anda harus Sign In untuk mengakses halaman Dashboard!
+                        </div>
+                <?php }  else if($_GET['pesan'] == "belumDaftar"){ ?>
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                          Akun Tidak Ditemukan!
                         </div>
                 <?php }
                     }
                    ?>
                 <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
-                  <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">Sign In</h4>
-                  <div class="row mt-3">
-                    <div class="col-2 text-center ms-auto">
-                      <a class="btn btn-link px-3" href="javascript:;">
-                        <i class="fa fa-facebook text-white text-lg"></i>
-                      </a>
-                    </div>
-                    <div class="col-2 text-center px-1">
-                      <a class="btn btn-link px-3" href="javascript:;">
-                        <i class="fa fa-github text-white text-lg"></i>
-                      </a>
-                    </div>
-                    <div class="col-2 text-center me-auto">
-                      <a class="btn btn-link px-3" href="javascript:;">
-                        <i class="fa fa-google text-white text-lg"></i>
-                      </a>
-                    </div>
-                  </div>
+                  <h4 class="text-white font-weight-bolder text-center mb-0">Sign In</h4>
                 </div>
               </div>
               <div class="card-body">

@@ -16,7 +16,7 @@
 
         $gambar         = $_FILES['gambar_suku_cadang']['name'];
         $lokasi         = $_FILES['gambar_suku_cadang']['tmp_name'];
-        move_uploaded_file($lokasi, '../../assets/gambar-suku-cadang/'.$gambar);
+        move_uploaded_file($lokasi, '../../assets/suku-cadang/'.$gambar);
 
         $result         =   "INSERT INTO suku_cadang VALUES ('$id', '$nama', '$gambar', $stok, $harga)";
         $add            =   mysqli_query($mysqli, $result);

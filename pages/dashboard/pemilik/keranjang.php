@@ -115,6 +115,14 @@
           </a>
         </li>
         <li class="nav-item">
+          <a class="nav-link text-white" href="../../../pages/dashboard/pemilik/kendaraan-table.php">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">airport_shuttle</i>
+            </div>
+            <span class="nav-link-text ms-1">Kendaraan</span>
+          </a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link text-white" href="../../../process/sign-out.php">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">exit_to_app</i>
@@ -193,8 +201,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <?php foreach ($_SESSION['keranjang'] as $id_produk => $qty) : ?>
-                    <?php
+                    <?php foreach ($_SESSION['keranjang'] as $id_produk => $qty) :
                       $result           = "SELECT * FROM suku_cadang
                                           WHERE id_suku_cadang='$id_produk'";
                       $suku_cadangs     = mysqli_query($mysqli, $result);

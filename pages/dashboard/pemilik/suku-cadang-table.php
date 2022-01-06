@@ -76,7 +76,6 @@
     <hr class="horizontal light mt-0 mb-2">
     <div class="collapse navbar-collapse  w-auto  max-height-vh-100" id="sidenav-collapse-main">
     <ul class="navbar-nav">
-        
         <li class="nav-item">
           <a class="nav-link text-white bg-gradient-primary active" href="../../../pages/dashboard/pemilik/suku-cadang-table.php">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
@@ -113,6 +112,14 @@
           </a>
         </li>
         <li class="nav-item">
+          <a class="nav-link text-white" href="../../../pages/dashboard/pemilik/kendaraan-table.php">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">airport_shuttle</i>
+            </div>
+            <span class="nav-link-text ms-1">Kendaraan</span>
+          </a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link text-white" href="../../../process/sign-out.php">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">exit_to_app</i>
@@ -120,7 +127,7 @@
             <span class="nav-link-text ms-1">Sign Out</span>
           </a>
         </li>
-      </ul>
+    </ul>
     </div>
   </aside>
   <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
@@ -179,14 +186,27 @@
               <div class="card-body pt-4 p-3">
                 <ul class="list-group">
                   <li class="list-group-item border-0 d-flex p-3 mb-2 bg-gray-100 border-radius-lg">
-                    <span class="text-dark font-weight-bold px-4"><img src="../../../assets/gambar-suku-cadang/<?php echo $suku_cadang["gambar_suku_cadang"]; ?>?>" height="75" class="border-radius-lg" alt="user1"></span></span>
+                    <span class="text-dark font-weight-bold px-4"><img src="../../../assets/suku-cadang/<?php echo $suku_cadang["gambar_suku_cadang"]; ?>?>" height="75" class="border-radius-lg" alt="user1"></span></span>
                     <div class="d-flex flex-column">
                       <span class="mb-3 text-xs">ID: <span class="text-dark font-weight-bold ms-sm-2"><?php echo $suku_cadang["id_suku_cadang"]; ?></span></span>
-                      <span class="mb-3 text-xs">Stok: <span class="text-dark ms-sm-2 font-weight-bold"><?php echo $suku_cadang["stok"]; ?></span></span>
+                      <span class="mb-3 text-xs">Stok: <span class="text-dark ms-sm-2 font-weight-bold">
+                        <?php
+                          if($suku_cadang["stok"] == 0){
+                            echo "Habis";
+                          }else{
+                            echo $suku_cadang["stok"];
+                          }
+                        ?>
+                      </span></span>
                       <span class="text-xs">Total Harga: <span class="text-dark ms-sm-2 font-weight-bold"><?php echo 'Rp'.number_format($suku_cadang["harga_satuan"], 2, ',', '.'); ?></span></span>
                     </div>  
                     <div class="ms-auto text-end">
-                      <a class="btn btn-link text-success px-3 mb-3 text-secondary text-xs font-weight-bold" href="../../../process/create/keranjang.php?id_suku_cadang=<?php echo$suku_cadang['id_suku_cadang']; ?>" onclick="return ('Apakah Anda yakin ingin menghapus data ini?')"><i class="ni ni-cart"></i>Beli</a>
+                    <?php
+                          if($suku_cadang["stok"] == 0){
+                            echo NULL; ?>
+                    <?php }else{ ?>
+                            <a class="btn btn-link text-success px-3 mb-3 text-secondary text-xs font-weight-bold" href="../../../process/create/keranjang.php?id_suku_cadang=<?php echo$suku_cadang['id_suku_cadang']; ?>"><i class="ni ni-cart"></i>Beli</a>
+                    <?php } ?>
                     </div>
                   </li>
                 </ul>

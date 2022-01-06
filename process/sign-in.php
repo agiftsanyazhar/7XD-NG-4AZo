@@ -38,6 +38,6 @@
             header("location:../index.php?pesan=errorSignIn");
         }
     } else {
-        header("location:../index.php?pesan=errorSignIn");
+        header("location:../index.php?pesan=belumDaftar");
     }
 ?>

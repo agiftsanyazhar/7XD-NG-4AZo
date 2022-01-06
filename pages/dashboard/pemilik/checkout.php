@@ -116,6 +116,14 @@
           </a>
         </li>
         <li class="nav-item">
+          <a class="nav-link text-white" href="../../../pages/dashboard/pemilik/kendaraan-table.php">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">airport_shuttle</i>
+            </div>
+            <span class="nav-link-text ms-1">Kendaraan</span>
+          </a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link text-white" href="../../../process/sign-out.php">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">exit_to_app</i>
@@ -174,6 +182,7 @@
     <div class="container-fluid py-4">
       <div class="row">
         <div class="col-12">
+          <a class="btn bg-gradient-success mb-3" href="checkout-tambah-alamat.php"><i class="material-icons text-sm">add</i>&nbsp;&nbsp;Tambah Alamat Baru</a>
           <div class="card my-4">
             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
               <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
@@ -246,80 +255,30 @@
           <div class="card my-4">
             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
               <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-                <h6 class="text-white text-capitalize ps-3">Formulir</h6>
+                <h6 class="text-white text-capitalize ps-3">Kendaraan</h6>
               </div>
             </div>
             <div class="card-body px-0 pb-0">
               <div class="table-responsive px-4">
                 <form method="POST" action="../../../process/create/checkout.php" role="form" class="text-start">
                     <div class="row my-3">
-                      <div class="col-md-6">
+                      <div class="col-md-12">
                         <div class="input-group input-group-outline">
-                          <input type="text" placeholder="Nama" class="form-control" name="nama" value="<?php echo $_SESSION['nama']; ?>" required>
-                        </div>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="input-group input-group-outline">
-                          <input type="text" placeholder="Alamat" class="form-control" name="alamat" value="<?php echo $_SESSION['alamat']; ?>" required>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row my-3">
-                      <div class="col-md-6">
-                        <div class="input-group input-group-outline">
-                          <input type="email" placeholder="Email" class="form-control" name="email" value="<?php echo $_SESSION['email']; ?>" required>
-                        </div>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="input-group input-group-outline">
-                          <input type="number" placeholder="Telepon" class="form-control" name="telp" value="<?php echo $_SESSION['telp']; ?>" minlength="11" maxlength="15" required>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row my-3">
-                      <div class="col-md-6">
-                        <div class="input-group input-group-outline">
-                          <input type="text" placeholder="No. STNK (Contoh: XX-1234-XX)" class="form-control" name="no_stnk" maxlength="10" required>
-                        </div>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="input-group input-group-outline">
-                          <select class="form-control" name="id_tipe" required>
-                              <option value="" disabled selected hidden>Tipe Kendaraan</option>
+                          <select class="form-control" name="no_stnk" required>
+                              <option value="" disabled selected hidden>Pilih No. STNK</option>
                               <?php
-                                $result          = (" SELECT * FROM tipe_kendaraan ");
-                                $tipe_kendaraans = mysqli_query($mysqli, $result);
-                                $row             = mysqli_fetch_assoc($tipe_kendaraans);
+                                $result          = "SELECT * FROM USER u
+                                                    JOIN pemilik p ON p.id_user = u.id_user
+                                                    JOIN kendaraan k ON k.id_pemilik = p.id_pemilik
+                                                    JOIN tipe_kendaraan tk ON tk.id_tipe = k.id_tipe
+                                                    WHERE u.id_user =". $_SESSION['id_user']."";
+                                $execute         = mysqli_query($mysqli, $result);
 
-                                foreach ($tipe_kendaraans as $tipe_kendaraan) :
+                                foreach ($execute as $stnk) :
                               ?>
-                              <option value="<?php echo $tipe_kendaraan['id_tipe']; ?>"><?php echo $tipe_kendaraan['nama_tipe']; ?></option>
+                              <option value="<?php echo $stnk['no_stnk']; ?>"><?php echo $stnk['no_stnk']; ?></option>
                               <?php endforeach; ?>
                           </select>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row my-3">
-                      <div class="col-md-6">
-                        <div class="input-group input-group-outline">
-                          <input type="text" placeholder="No. Mesin" class="form-control" name="no_mesin" maxlength="14" required>
-                        </div>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="input-group input-group-outline">
-                          <input type="text" placeholder="No. Rangka" class="form-control" name="no_rangka" maxlength="18" required>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row my-3">
-                      <div class="col-md-6">
-                        <div class="input-group input-group-outline">
-                          <input type="text" placeholder="Warna" class="form-control" name="warna" >
-                        </div>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="input-group input-group-outline">
-                          <input type="number" placeholder="Tahun" class="form-control" name="tahun" maxlength="4" required>
                         </div>
                       </div>
                     </div>

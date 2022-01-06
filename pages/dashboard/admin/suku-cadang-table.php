@@ -12,7 +12,7 @@
   
   // Fetch all users data from database
   $result             = "SELECT * FROM suku_cadang
-                        ORDER BY lastins";
+                        ORDER BY nama_suku_cadang";
   $suku_cadangs       = mysqli_query($mysqli, $result);
   $counter            = 1;
 
@@ -245,7 +245,7 @@
                       <td>
                         <div class="d-flex py-1">
                           <div>
-                            <img src="../../../assets/gambar-suku-cadang/<?php echo $suku_cadang["gambar_suku_cadang"]; ?>" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
+                            <img src="../../../assets/suku-cadang/<?php echo $suku_cadang["gambar_suku_cadang"]; ?>" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
                           </div>
                           <div class="d-flex flex-column justify-content-center">
                             <h6 class="mb-0 text-sm"><?php echo $suku_cadang["nama_suku_cadang"]; ?></h6>
