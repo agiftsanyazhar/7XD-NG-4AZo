@@ -12,6 +12,6 @@
 
     // Tes koneksi
     if ( !$mysqli ){
-        echo "Koneksi database gagal: ".mysqli_error($mysqli);
+        echo "Koneksi database gagal! ".mysqli_error($mysqli);
     }
 ?>
