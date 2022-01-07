@@ -95,22 +95,6 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white " href="../../pages/dashboard/admin/kendaraan-table.php">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">table_view</i>
-            </div>
-            <span class="nav-link-text ms-1">Kendaraan</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white " href="../../pages/dashboard/admin/nota-suku-cadang-table.php">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">table_view</i>
-            </div>
-            <span class="nav-link-text ms-1">Nota Suku Cadang</span>
-          </a>
-        </li>
-        <li class="nav-item">
           <a class="nav-link text-white " href="../../pages/dashboard/admin/pegawai-table.php">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">table_view</i>
@@ -188,22 +172,29 @@
                 <div class="row my-3">
                   <div class="col-md-6">
                     <div class="input-group input-group-outline">
-                      <label class="form-label">Nama</label>
-                      <input type="text" class="form-control" name="nama" required>
+                      <select class="form-control" name="nama" required>
+                          <option value="" disabled selected hidden>Nama</option>
+                            <?php
+                              $result          = "SELECT * FROM pegawai ";
+                              $pegawais        = mysqli_query($mysqli, $result);
+
+                              foreach ($pegawais as $pegawai) :
+                            ?>
+                          <option value="<?php echo $pegawai['nama_pegawai']; ?>"><?php echo $pegawai['nama_pegawai']; ?></option>
+                          <?php endforeach; ?>
+                      </select>
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="input-group input-group-outline">
-                      <label class="form-label">Email</label>
-                      <input type="email" class="form-control" name="email" required>
+                      <input type="email" placeholder="Email" class="form-control" name="email" value=".administrator@gmail.com" required>
                     </div>
                   </div>
                 </div>
                 <div class="row my-3">
                   <div class="col-md-12">
                     <div class="input-group input-group-outline">
-                      <label class="form-label">Password</label>
-                      <input type="password" class="form-control" name="password" minlength="8" maxlength="32" required>
+                      <input type="password" placeholder="Password" class="form-control" name="password" minlength="8" maxlength="32" required>
                     </div>
                   </div>
                 </div>

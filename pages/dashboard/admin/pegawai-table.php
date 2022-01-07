@@ -13,7 +13,8 @@
   // Fetch all users data from database
   $result             = "SELECT u.id_user, j.nama_jabatan, u.nama, u.email, u.password, u.alamat, u.telp
                         FROM USER u JOIN jabatan j
-                        ON u.id_jabatan = j.id_jabatan;";
+                        ON u.id_jabatan = j.id_jabatan
+                        ORDER BY id_user";
   $pegawais           = mysqli_query($mysqli, $result);
   $counter            = 1;
 
@@ -139,6 +140,14 @@
           </a>
         </li>
         <li class="nav-item">
+          <a class="nav-link text-white" href="../../../pages/dashboard/admin/kendaraan-table.php">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">airport_shuttle</i>
+            </div>
+            <span class="nav-link-text ms-1">Kendaraan</span>
+          </a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link text-white " href="../../../pages/dashboard/admin/billing.php">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">history</i>
@@ -228,10 +237,9 @@
                   <thead>
                     <tr>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 align-middle text-center">Numb</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">ID</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">ID User</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Jabatan</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Nama Pegawai</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Password</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Alamat</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">HP</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
@@ -246,11 +254,7 @@
                       <td>
                         <span class="text-secondary font-weight-bold text-xs"><?php echo $pegawai["id_user"]; ?></span>
                       </td>
-                      <td>
-                        <span class="text-secondary font-weight-bold text-xs">
-                          <?php echo $pegawai["nama_jabatan"]; ?>
-                        </span>
-                      </td>
+                      <td><span class="text-secondary font-weight-bold text-xs"><?php echo $pegawai["nama_jabatan"]; ?></span></td>
                       <td>
                         <div class="d-flex py-1">
                           <div>
@@ -262,9 +266,6 @@
                           </div>
                         </div>
                       </td>
-                      <td>
-                        <span class="text-secondary font-weight-bold text-xs"><?php echo $pegawai["password"]; ?></span>
-                      </td>
                       <td class="text-sm">
                         <span class="text-secondary font-weight-bold text-xs"><?php echo $pegawai["alamat"]; ?></span>
                       </td>
@@ -272,8 +273,7 @@
                         <span class="text-secondary text-xs font-weight-bold"><?php echo $pegawai["telp"]; ?></span>
                       </td>
                       <td>
-                        <a class="btn btn-link text-danger text-gradient px-3 mb-0" href="javascript:;" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')"><i class="material-icons text-sm me-2">delete</i>Delete</a>
-                        <a class="btn btn-link text-warning px-3 mb-0" href="javascript:;"><i class="material-icons text-sm me-2">edit</i>Edit</a>
+                        <a class="btn btn-link text-danger text-gradient px-3 mb-0" href="../../../process/delete/pegawai.php?id_user=<?php echo $pegawai['id_user']; ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')"><i class="material-icons text-sm me-2">delete</i>Delete</a>
                       </td>
                     </tr>
                     <?php 

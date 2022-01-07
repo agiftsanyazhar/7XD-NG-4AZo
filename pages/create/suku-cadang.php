@@ -95,22 +95,6 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white " href="../../pages/dashboard/admin/kendaraan-table.php">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">table_view</i>
-            </div>
-            <span class="nav-link-text ms-1">Kendaraan</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white " href="../../pages/dashboard/admin/nota-suku-cadang-table.php">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">table_view</i>
-            </div>
-            <span class="nav-link-text ms-1">Nota Suku Cadang</span>
-          </a>
-        </li>
-        <li class="nav-item">
           <a class="nav-link text-white " href="../../pages/dashboard/admin/pegawai-table.php">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">table_view</i>
@@ -188,35 +172,31 @@
                 <div class="row my-3">
                   <div class="col-md-6">
                     <div class="input-group input-group-outline">
-                      <label class="form-label">ID Suku Cadang</label>
-                      <input type="text" class="form-control" name="id_suku_cadang" required>
+                      <input type="text" placeholder="ID Suku Cadang" class="form-control" name="id_suku_cadang" required>
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="input-group input-group-outline">
-                      <label class="form-label">Nama Suku Cadang</label>
-                      <input type="text" class="form-control" name="nama_suku_cadang" required>
+                      <input type="text" placeholder="Nama Suku Cadang" class="form-control" name="nama_suku_cadang" required>
                     </div>
                   </div>
                 </div>
                 <div class="row my-3">
                   <div class="col-md-6">
                     <div class="input-group input-group-outline">
-                        <label class="form-label">Harga Satuan</label>
-                        <input type="number" class="form-control" name="harga_satuan" required>
+                        <input type="number" placeholder="Harga Satuan" class="form-control" name="harga_satuan" required>
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="input-group input-group-outline">
-                        <label class="form-label">Stok</label>
-                        <input type="number" class="form-control" min="1" name="stok" required>
+                        <input type="number" placeholder="Stok" class="form-control" min="1" name="stok" required>
                     </div>
                   </div>
                 </div>
                 <div class="row my-3">
                   <div class="col-md-12">
                     <div class="input-group input-group-outline">
-                        <input type="file" class="form-control" name="gambar_suku_cadang">
+                        <input type="file"class="form-control" name="gambar_suku_cadang">
                     </div>
                   </div>
                 </div>

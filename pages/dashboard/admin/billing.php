@@ -10,10 +10,11 @@
     header("location:../../../index.php?pesan=belumSignIn");
   }
 
-  $result               = "SELECT * FROM billing";
+  // Fetch all users data from database
+  $result               = "SELECT * FROM detail_pesanan_vu";
   $bills                = mysqli_query($mysqli, $result);
 
-  // Fetch all users data from database
+
   $query                =   "SELECT * FROM user WHERE email='". $_SESSION['email']."'";
   $result               = mysqli_query($mysqli, $query);
 
@@ -133,6 +134,14 @@
           </a>
         </li>
         <li class="nav-item">
+          <a class="nav-link text-white" href="../../../pages/dashboard/admin/kendaraan-table.php">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">airport_shuttle</i>
+            </div>
+            <span class="nav-link-text ms-1">Kendaraan</span>
+          </a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link text-white bg-gradient-primary active" href="../../../pages/dashboard/admin/billing.php">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">history</i>
@@ -207,6 +216,7 @@
     </nav>
     <!-- End Navbar -->
     <div class="container-fluid py-4">
+      <a class="btn bg-gradient-success mb-0" href="cetak-billing.php" target="_blank"><i class="material-icons text-sm">print</i>Cetak</a>
       <div class="row">
         <div class="mt-4">
           <div class="card">
@@ -218,13 +228,28 @@
                 <?php foreach ($bills as $bill) : ?>
                 <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg">
                   <div class="d-flex flex-column">
-                    <h6 class="mb-3 text-sm"><?php echo $bill["nama_pemilik"]; ?></h6>
+                  <h6 class="mb-3 text-sm"><?php echo $bill["no_nota_suku_cadang"]; ?></h6>
+                    <span class="mb-2 text-xs">Nama: <span class="text-dark font-weight-bold ms-sm-2"><?php echo $bill["nama_pemilik"]; ?></span></span>
                     <span class="mb-2 text-xs">No. STNK: <span class="text-dark font-weight-bold ms-sm-2"><?php echo $bill["no_stnk"]; ?></span></span>
-                    <span class="mb-2 text-xs">Tanggal Terima: <span class="text-dark ms-sm-2 font-weight-bold"><?php echo $bill["tgl_terima"]; ?></span></span>
-                    <span class="text-xs">Total Harga: <span class="text-dark ms-sm-2 font-weight-bold"><?php echo 'Rp'.number_format($bill["total_harga"], 2, ',', '.'); ?></span></span>
-                  </div>
-                  <div class="ms-auto text-end">
-                    <a class="btn btn-link text-danger text-gradient px-3 mb-0" href="javascript:;" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')"><i class="material-icons text-sm me-2">delete</i>Delete</a>
+                    <span class="mb-2 text-xs">Tanggal Pesan: <span class="text-dark ms-sm-2 font-weight-bold"><?php echo $bill["tgl_pesan"]; ?> <?php echo $bill["jam_pesan"]; ?></span></span>
+                    <span class="mb-2 text-xs">Tanggal Bayar: <span class="text-dark ms-sm-2 font-weight-bold">
+                      <?php 
+                        if($bill["status"] == 0){
+                          echo "-";
+                        } else {
+                          echo $bill["tgl_bayar"]." ".$bill["jam_bayar"];
+                        }
+                      ?>
+                    </span></span>
+                    <span class="mb-2 text-xs">Status: <span class="text-dark ms-sm-2 font-weight-bold">
+                      <?php 
+                        if($bill["status"] == 0){
+                          echo "Belum Bayar";
+                        } else {
+                          echo "Sudah Bayar";
+                        }
+                      ?>
+                    </span></span>
                   </div>
                 </li>
                 <?php endforeach; ?>

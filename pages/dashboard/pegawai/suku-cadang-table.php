@@ -183,7 +183,7 @@
     <div class="container-fluid py-4">
       <div class="row">
         <div class="col-12">
-          <a class="btn bg-gradient-success mb-3" href="../../../pages/create/suku-cadang.php"><i class="material-icons text-sm">add</i>&nbsp;&nbsp;Add</a>
+          <a class="btn bg-gradient-success mb-3" href="create-suku-cadang.php"><i class="material-icons text-sm">add</i>&nbsp;&nbsp;Add</a>
           <div class="card my-4">
             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
               <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
@@ -226,8 +226,8 @@
                         <span class="text-secondary text-xs font-weight-bold"><?php echo 'Rp'.number_format($suku_cadang["harga_satuan"], 2, ',', '.'); ?></span>
                       </td>
                       <td>
-                        <a class="btn btn-link text-danger px-3 mb-0" href="../../../process/delete/suku-cadang.php?id_suku_cadang=<?php echo $suku_cadang['id_suku_cadang']; ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')"><i class="material-icons text-sm me-2">delete</i>Delete</a>
-                        <a class="btn btn-link text-warning px-3 mb-0" href="../../../pages/edit/suku-cadang.php?id_suku_cadang=<?php echo $suku_cadang['id_suku_cadang']; ?>"><i class="material-icons text-sm me-2">edit</i>Edit</a>
+                        <a class="btn btn-link text-danger px-3 mb-0" href="delete-suku-cadang.php?id_suku_cadang=<?php echo $suku_cadang['id_suku_cadang']; ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')"><i class="material-icons text-sm me-2">delete</i>Delete</a>
+                        <a class="btn btn-link text-warning px-3 mb-0" href="edit-suku-cadang.php?id_suku_cadang=<?php echo $suku_cadang['id_suku_cadang']; ?>"><i class="material-icons text-sm me-2">edit</i>Edit</a>
                       </td>
                     </tr>
                     <?php 

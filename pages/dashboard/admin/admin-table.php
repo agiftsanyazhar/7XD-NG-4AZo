@@ -135,6 +135,14 @@
           </a>
         </li>
         <li class="nav-item">
+          <a class="nav-link text-white" href="../../../pages/dashboard/admin/kendaraan-table.php">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">airport_shuttle</i>
+            </div>
+            <span class="nav-link-text ms-1">Kendaraan</span>
+          </a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link text-white " href="../../../pages/dashboard/admin/billing.php">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">history</i>
@@ -224,9 +232,8 @@
                   <thead>
                     <tr>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 align-middle text-center">Numb</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">ID</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Nama Admin</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Password</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">ID USer</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Nama</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
                     </tr>
                   </thead>
@@ -251,11 +258,8 @@
                         </div>
                       </td>
                       <td>
-                        <span class="text-secondary font-weight-bold text-xs"><?php echo $admin["password"]; ?></span>
-                      </td>
-                      <td>
                         <a class="btn btn-link text-danger px-3 mb-0" href="../../../process/delete/admin.php?id_user=<?php echo $admin['id_user']; ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')"><i class="material-icons text-sm me-2">delete</i>Delete</a>
-                        <a class="btn btn-link text-warning px-3 mb-0" href="../../../process/edit/admin.php?=id_user<?php echo $admin['id_user']; ?>"><i class="material-icons text-sm me-2">edit</i>Edit</a>
+                        <a class="btn btn-link text-warning px-3 mb-0" href="../../../pages/edit/admin.php?id_user=<?php echo $admin['id_user']; ?>"><i class="material-icons text-sm me-2">edit</i>Edit</a>
                       </td>
                     </tr>
                     <?php 

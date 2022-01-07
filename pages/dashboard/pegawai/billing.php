@@ -10,7 +10,7 @@
     header("location:../../../index.php?pesan=belumSignIn");
   }
 
-  $result             = "SELECT * FROM billing";
+  $result             = "SELECT * FROM billing_vu";
   $bills              = mysqli_query($mysqli, $result);
 
   // Fetch all users data from database
@@ -189,12 +189,17 @@
                 <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg">
                   <div class="d-flex flex-column">
                     <h6 class="mb-3 text-sm"><?php echo $bill["nama_pemilik"]; ?></h6>
-                    <span class="mb-2 text-xs">No. STNK: <span class="text-dark font-weight-bold ms-sm-2"><?php echo $bill["no_stnk"]; ?></span></span>
-                    <span class="mb-2 text-xs">Tanggal Terima: <span class="text-dark ms-sm-2 font-weight-bold"><?php echo $bill["tgl_terima"]; ?></span></span>
-                    <span class="text-xs">Total Harga: <span class="text-dark ms-sm-2 font-weight-bold"><?php echo 'Rp'.number_format($bill["total_harga"], 2, ',', '.'); ?></span></span>
-                  </div>
-                  <div class="ms-auto text-end">
-                    <a class="btn btn-link text-danger text-gradient px-3 mb-0" href="javascript:;" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')"><i class="material-icons text-sm me-2">delete</i>Delete</a>
+                    <span class="mb-2 text-xs">No. Nota Suku Cadang: <span class="text-dark font-weight-bold ms-sm-2"><?php echo $bill["no_nota_suku_cadang"]; ?></span></span>
+                    <span class="mb-2 text-xs">Tanggal Pesan: <span class="text-dark ms-sm-2 font-weight-bold"><?php echo $bill["tgl_pesan"]; ?> <?php echo $bill["jam_pesan"]; ?></span></span>
+                    <span class="mb-2 text-xs">Status: <span class="text-dark ms-sm-2 font-weight-bold">
+                      <?php 
+                        if($bill["status"] == 0){
+                          echo "Belum Bayar";
+                        } else {
+                          echo "Sudah Bayar";
+                        }
+                      ?>
+                    </span></span>
                   </div>
                 </li>
                 <?php endforeach; ?>

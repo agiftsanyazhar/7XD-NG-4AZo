@@ -95,22 +95,6 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white " href="../../pages/dashboard/admin/kendaraan-table.php">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">table_view</i>
-            </div>
-            <span class="nav-link-text ms-1">Kendaraan</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white " href="../../pages/dashboard/admin/nota-suku-cadang-table.php">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">table_view</i>
-            </div>
-            <span class="nav-link-text ms-1">Nota Suku Cadang</span>
-          </a>
-        </li>
-        <li class="nav-item">
           <a class="nav-link text-white  active bg-gradient-primary" href="../../pages/dashboard/admin/pegawai-table.php">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">table_view</i>
@@ -188,42 +172,46 @@
                 <div class="row my-3">
                   <div class="col-md-6">
                     <div class="input-group input-group-outline">
-                      <label class="form-label">Nama</label>
-                      <input type="text" class="form-control" name="nama" required>
+                      <input type="text" placeholder="Nama" class="form-control" name="nama" required>
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="input-group input-group-outline">
-                      <label class="form-label">Nama</label>
-                      <input type="email" class="form-control" name="email" required>
-                    </div>
-                  </div>
-                </div>
-                <div class="row my-3">
-                  <div class="col-md-6">
-                    <div class="input-group input-group-outline">
-                      <label class="form-label">Nama</label>
-                      <input type="text" class="form-control" name="nama" required>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="input-group input-group-outline">
-                      <label class="form-label">Email</label>
-                      <input type="email" class="form-control" name="email" required>
+                      <select class="form-control" name="id_jabatan" required>
+                        <option value="" disabled selected hidden>Jabatan</option>
+                          <?php
+                            $result          = "SELECT * FROM jabatan ";
+                            $jabatans        = mysqli_query($mysqli, $result);
+
+                            foreach ($jabatans as $jabatan) :
+                          ?>
+                        <option value="<?php echo $jabatan['id_jabatan']; ?>"><?php echo $jabatan['nama_jabatan']; ?></option>
+                          <?php endforeach; ?>
+                      </select>
                     </div>
                   </div>
                 </div>
                 <div class="row my-3">
                   <div class="col-md-6">
                     <div class="input-group input-group-outline">
-                      <label class="form-label">Nama</label>
-                      <input type="text" class="form-control" name="nama" required>
+                      <input type="text" placeholder="Alamat" class="form-control" name="alamat" required>
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="input-group input-group-outline">
-                      <label class="form-label">Email</label>
-                      <input type="email" class="form-control" name="email" required>
+                      <input type="numb" placeholder="Telepon" class="form-control" name="telp" required>
+                    </div>
+                  </div>
+                </div>
+                <div class="row my-3">
+                  <div class="col-md-6">
+                    <div class="input-group input-group-outline">
+                      <input type="text" placeholder="Email" class="form-control" name="email" required>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="input-group input-group-outline">
+                      <input type="password" placeholder="Password" class="form-control" name="password" required>
                     </div>
                   </div>
                 </div>

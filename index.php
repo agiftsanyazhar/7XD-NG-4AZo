@@ -81,12 +81,10 @@
               <div class="card-body">
                 <form method="POST" action="process/sign-in.php" role="form" class="text-start">
                   <div class="input-group input-group-outline my-3">
-                    <label class="form-label">Email</label>
-                    <input type="email" class="form-control" name="email" required>
+                    <input type="email" placeholder="Email" class="form-control" name="email" required>
                   </div>
                   <div class="input-group input-group-outline my-3">
-                    <label class="form-label">Password</label>
-                    <input type="password" class="form-control" name="password" minlength="8" required>
+                    <input type="password" placeholder="Password" class="form-control" name="password" minlength="8" required>
                   </div>
                   <div class="form-check form-switch d-flex align-items-center mb-3">
                     <input class="form-check-input" type="checkbox" id="rememberMe">

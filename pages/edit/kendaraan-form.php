@@ -11,27 +11,11 @@
   }
 
   // Fetch all users data from database
-  $query              =   "SELECT * FROM user WHERE email='". $_SESSION['email']."'";
-  $result             = mysqli_query($mysqli, $query);
-
-  $row                = mysqli_fetch_assoc($result);
-
-  $_SESSION['nama']   = $row['nama'];
-  $_SESSION['email']  = $row['email'];
-
   if(isset($_GET['no_stnk'])){
     $result           = "SELECT * FROM kendaraan k
                         JOIN tipe_kendaraan tk ON tk.id_tipe = k.id_tipe
                         WHERE no_stnk='" . $_GET['no_stnk'] . "' ";
     $edit             = mysqli_query($mysqli, $result);
-
-    // while ($row = mysqli_fetch_assoc($edit)){
-    //   echo $row['id_suku_cadang'];
-    //   echo $row['nama_suku_cadang'];
-    //   echo $row['gambar_suku_cadang'];
-    //   echo $row['stok'];
-    //   echo $row['harga_satuan'];
-    // }
   }
 ?>
 
@@ -204,8 +188,6 @@
                     </div>
                   </form>
                   <?php
-                    include_once('../../config/config.php');
-
                     if(isset($_POST['edit-kendaraan-form'])){
                         // 2. Data kendaraan
                         $tipe_kendaraan         =  $_POST['id_tipe'];

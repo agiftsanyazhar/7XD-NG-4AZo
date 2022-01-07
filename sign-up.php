@@ -70,44 +70,33 @@
                   <div class="row my-3">
                     <div class="col-md-6">
                       <div class="input-group input-group-outline">
-                        <label class="form-label">Nama</label>
-                        <input type="text" class="form-control" name="nama" required>
+                        <input type="text" placeholder="Nama" class="form-control" name="nama" required>
                       </div>
                     </div>
                     <div class="col-md-6">
                       <div class="input-group input-group-outline">
-                        <label class="form-label">Alamat</label>
-                        <input type="text" class="form-control" name="alamat" required>
+                        <input type="text" placeholder="Alamat" class="form-control" name="alamat" required>
                       </div>
                     </div>
                   </div>
                   <div class="row my-3">
                     <div class="col-md-6">
                       <div class="input-group input-group-outline">
-                        <label class="form-label">Email</label>
-                        <input type="email" class="form-control" name="email" required>
+                        <input type="email" placeholder="Email" class="form-control" name="email" required>
                       </div>
                     </div>
                     <div class="col-md-6">
                       <div class="input-group input-group-outline">
-                        <label class="form-label">Telepon</label>
-                        <input type="number" class="form-control" name="telp" minlength="11" maxlength="15" required>
+                        <input type="number" placeholder="Telepon" class="form-control" name="telp" minlength="11" maxlength="15" required>
                       </div>
                     </div>
                   </div>
                   <div class="row my-3">
                     <div class="col-md-12">
                       <div class="input-group input-group-outline">
-                        <label class="form-label">Password</label>
-                        <input type="password" class="form-control" name="password" minlength="8" maxlength="32" required>
+                        <input type="password" placeholder="Password" class="form-control" name="password" minlength="8" maxlength="32" required>
                       </div>
                     </div>
-                    <!-- <div class="col-md-6">
-                      <div class="input-group input-group-outline">
-                        <label class="form-label">Ulangi Password</label>
-                        <input type="password" class="form-control" name="repassword" minlength="8" required>
-                      </div>
-                    </div> -->
                   </div>
                   <div class="text-center">
                     <button type="submit" class="btn bg-gradient-primary w-100 my-4 mb-2" name="sign-up">Sign Up</button>

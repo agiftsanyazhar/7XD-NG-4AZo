@@ -8,10 +8,6 @@
         header("location:../../index.php?pesan=belumSignIn");
     }
 
-    if($_SESSION['role'] == ""){
-        header("location:../../index.php?pesan=belumSignIn");
-    }
-
     if(isset($_GET['id_user'])){
         $result         =   "DELETE FROM user WHERE id_user='" . $_GET['id_user'] . "' ";
         $delete         = mysqli_query($mysqli, $result);

@@ -137,6 +137,14 @@
           </a>
         </li>
         <li class="nav-item">
+          <a class="nav-link text-white" href="../../../pages/dashboard/admin/kendaraan-table.php">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">airport_shuttle</i>
+            </div>
+            <span class="nav-link-text ms-1">Kendaraan</span>
+          </a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link text-white " href="../../../pages/dashboard/admin/billing.php">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">history</i>
@@ -245,13 +253,29 @@
                         <span class="text-secondary font-weight-bold text-xs"><?php echo $jabatan["nama_jabatan"]; ?></span>
                       </td>
                       <td>
-                        <span class="text-secondary text-xs font-weight-bold"><?php echo 'Rp'.number_format($jabatan["gaji_pokok"]); ?></span>
+                        <span class="text-secondary text-xs font-weight-bold">
+                          <?php
+                            if($jabatan["gaji_pokok"] == 0){
+                              echo '-';
+                            } else{
+                              echo 'Rp'.number_format($jabatan["gaji_pokok"]);
+                            }
+                          ?>
+                        </span>
                       </td>
                       <td>
-                        <span class="text-secondary text-xs font-weight-bold"><?php echo 'Rp'.number_format($jabatan["tunjangan"]); ?></span>
+                        <span class="text-secondary text-xs font-weight-bold">
+                          <?php
+                            if($jabatan["tunjangan"] == 0){
+                              echo '-';
+                            } else{
+                              echo 'Rp'.number_format($jabatan["tunjangan"]);
+                            }
+                          ?>
+                        </span>
                       </td>
                       <td>
-                        <a class="btn btn-link text-warning px-3 mb-0" href="javascript:;"><i class="material-icons text-sm me-2">edit</i>Edit</a>
+                        <a class="btn btn-link text-warning px-3 mb-0" href="../../edit/jabatan.php?id_jabatan=<?php echo $jabatan['id_jabatan']; ?>"><i class="material-icons text-sm me-2">edit</i>Edit</a>
                       </td>
                     </tr>
                     <?php 

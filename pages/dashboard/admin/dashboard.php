@@ -130,6 +130,14 @@
           </a>
         </li>
         <li class="nav-item">
+          <a class="nav-link text-white" href="../../../pages/dashboard/admin/kendaraan-table.php">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">airport_shuttle</i>
+            </div>
+            <span class="nav-link-text ms-1">Kendaraan</span>
+          </a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link text-white " href="../../../pages/dashboard/admin/billing.php">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">history</i>
@@ -208,12 +216,18 @@
         <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
           <div class="card">
             <div class="card-header p-3 pt-2">
-              <div class="icon icon-lg icon-shape bg-gradient-dark shadow-dark text-center border-radius-xl mt-n4 position-absolute">
-                <i class="material-icons opacity-10">weekend</i>
-              </div>
               <div class="text-end pt-1">
                 <p class="text-sm mb-0 text-capitalize">Today's Money</p>
-                <h4 class="mb-0">$53k</h4>
+                <h4 class="mb-0">
+                  <?php
+                    $count  = mysqli_query($mysqli,"SELECT SUM(total_harga) as Total FROM pembayaran
+                                                    WHERE tgl_bayar=CURDATE()");
+                    $sql    = mysqli_fetch_assoc($count);
+
+                    $row    = $sql['Total'];
+                    echo 'Rp'.number_format($row, 2, ',', '.');
+                  ?>
+                </h4>
               </div>
             </div>
             <hr class="dark horizontal my-0">
@@ -225,12 +239,17 @@
         <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
           <div class="card">
             <div class="card-header p-3 pt-2">
-              <div class="icon icon-lg icon-shape bg-gradient-primary shadow-primary text-center border-radius-xl mt-n4 position-absolute">
-                <i class="material-icons opacity-10">person</i>
-              </div>
               <div class="text-end pt-1">
-                <p class="text-sm mb-0 text-capitalize">Today's Users</p>
-                <h4 class="mb-0">2,300</h4>
+                <p class="text-sm mb-0 text-capitalize">Total Users</p>
+                <h4 class="mb-0">
+                <?php
+                    $count  = mysqli_query($mysqli,"SELECT COUNT(id_user) as Total FROM user");
+                    $sql    = mysqli_fetch_assoc($count);
+
+                    $row    = $sql['Total'];
+                    echo $row;
+                  ?>
+                </h4>
               </div>
             </div>
             <hr class="dark horizontal my-0">
@@ -242,12 +261,17 @@
         <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
           <div class="card">
             <div class="card-header p-3 pt-2">
-              <div class="icon icon-lg icon-shape bg-gradient-success shadow-success text-center border-radius-xl mt-n4 position-absolute">
-                <i class="material-icons opacity-10">person</i>
-              </div>
               <div class="text-end pt-1">
-                <p class="text-sm mb-0 text-capitalize">New Clients</p>
-                <h4 class="mb-0">3,462</h4>
+                <p class="text-sm mb-0 text-capitalize">Item Sold</p>
+                <h4 class="mb-0">
+                  <?php
+                    $count  = mysqli_query($mysqli,"SELECT SUM(banyak) as Total FROM detail_nota_suku_cadang");
+                    $sql    = mysqli_fetch_assoc($count);
+
+                    $row    = $sql['Total'];
+                    echo $row;
+                  ?>
+                </h4>
               </div>
             </div>
             <hr class="dark horizontal my-0">
@@ -259,12 +283,17 @@
         <div class="col-xl-3 col-sm-6">
           <div class="card">
             <div class="card-header p-3 pt-2">
-              <div class="icon icon-lg icon-shape bg-gradient-info shadow-info text-center border-radius-xl mt-n4 position-absolute">
-                <i class="material-icons opacity-10">weekend</i>
-              </div>
               <div class="text-end pt-1">
-                <p class="text-sm mb-0 text-capitalize">Sales</p>
-                <h4 class="mb-0">$103,430</h4>
+                <p class="text-sm mb-0 text-capitalize">Total Money</p>
+                <h4 class="mb-0">
+                  <?php
+                    $count  = mysqli_query($mysqli,"SELECT SUM(total_harga) as Total FROM pembayaran");
+                    $sql    = mysqli_fetch_assoc($count);
+
+                    $row    = $sql['Total'];
+                    echo 'Rp'.number_format($row, 2, ',', '.');
+                  ?>
+                </h4>
               </div>
             </div>
             <hr class="dark horizontal my-0">

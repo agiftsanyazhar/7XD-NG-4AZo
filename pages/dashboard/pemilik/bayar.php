@@ -322,10 +322,6 @@
                   </div>
                 </div>
                 <?php
-                  include_once('../../../config/config.php');
-
-                  mysqli_report(MYSQLI_REPORT_STRICT | MYSQLI_REPORT_ERROR);
-
                   if(isset($_POST['bayar'])){
                       $gambar         = $_FILES['bukti_pembayaran']['name'];
                       $lokasi         = $_FILES['bukti_pembayaran']['tmp_name'];

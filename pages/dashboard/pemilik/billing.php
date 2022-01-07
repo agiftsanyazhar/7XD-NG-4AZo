@@ -10,9 +10,6 @@
     header("location:../../../index.php?pesan=belumSignIn");
   }
 
-  $result             = "SELECT * FROM billing_vu";
-  $bills              = mysqli_query($mysqli, $result);
-
   $query              =   "SELECT * FROM user WHERE email='". $_SESSION['email']."'";
   $result             = mysqli_query($mysqli, $query);
 
@@ -22,6 +19,10 @@
   $_SESSION['email']  = $row['email'];
   $_SESSION['alamat'] = $row['alamat'];
   $_SESSION['telp']   = $row['telp'];
+
+  $result               = "SELECT * FROM billing_vu
+                          WHERE nama_pemilik='". $_SESSION['nama'] ."'";
+  $bills                = mysqli_query($mysqli, $result);
 ?>
 
 <!--

@@ -12,10 +12,9 @@
 
     if(isset($_POST['add-admin'])){
         // menangkap data yang dikirim dari form
-        $nama           = filter_input(INPUT_POST, 'nama', FILTER_SANITIZE_STRING);          //$_POST['nama'];
-        $email          = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);          //$_POST['email'];
-        $password       = md5($_POST['password']);          //md5($_POST['password']);
-        // $repassword     = md5($_POST['repassword']);          //md5($_POST['password']);
+        $nama           = filter_input(INPUT_POST, 'nama', FILTER_SANITIZE_STRING);         //$_POST['nama'];
+        $email          = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);         //$_POST['email'];
+        $password       = md5($_POST['password']);
         $role           = "admin";
 
         $sql_cek        = mysqli_query($mysqli,"SELECT * FROM user WHERE email='$email' OR telp='$telp'");
@@ -25,7 +24,7 @@
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 Email Telah Terdaftar! Silakan Sign In
             </div>
-            <meta http-equiv="refresh" content="1;url=../index.php">
+            <meta http-equiv="refresh" content="3;url=../index.php">
 <?php        } else {
             $query         =    "INSERT INTO user (nama, email, password, role)
                                 VALUES ('$nama', '$email', '$password', '$role');
@@ -45,26 +44,5 @@
                 header("location:../../pages/dashboard/admin/admin-table.php");
             }
         }
-
-        // $stmt           = $mysqli->prepare($result);
-
-        // // bind parameter ke query
-        // $validatedData = array(
-        //     ":nama"     => $nama,
-        //     ":email"    => $email,
-        //     ":password" => $password,
-        //     ":repassword" => $repassword,
-        //     ":role"     => 'pemilik',
-        //     ":alamat"   => $alamat,
-        //     ":telp"     => $telp,
-        // );
-
-        // $saved            = $stmt->execute($validatedData);
-
-        // if($signup){
-        //     header("location:index.php?pesan=successSignUp");
-        // } else {
-        //     header("location:sign-up.php?pesan=errorSignUp");
-        // }
     }
 ?>
