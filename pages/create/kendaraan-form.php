@@ -188,8 +188,6 @@
                     </div>
                   </form>
                   <?php
-                    include_once('../../config/config.php');
-
                     if(isset($_POST['add-kendaraan-form'])){
                         // 2. Data kendaraan
                         $stnk                   =  $_POST['no_stnk'];

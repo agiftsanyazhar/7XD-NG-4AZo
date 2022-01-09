@@ -267,7 +267,7 @@
                           <select class="form-control" name="no_stnk" required>
                               <option value="" disabled selected hidden>Pilih No. STNK</option>
                               <?php
-                                $result          = "SELECT * FROM USER u
+                                $result          = "SELECT * FROM user u
                                                     JOIN pemilik p ON p.id_user = u.id_user
                                                     JOIN kendaraan k ON k.id_pemilik = p.id_pemilik
                                                     JOIN tipe_kendaraan tk ON tk.id_tipe = k.id_tipe

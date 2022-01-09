@@ -9,15 +9,11 @@
   if($_SESSION['role'] == ""){
     header("location:../../../index.php?pesan=belumSignIn");
   }
-
+  
   // Fetch all users data from database
-  if(isset($_GET['id_pkb'])){
-    $kueri              = "SELECT * FROM billing_vu";
-    $detail_pesanan     = mysqli_query($mysqli, $kueri);
-  }
-
   $counter            = 1;
 
+  // Fetch all users data from database
   $query              =   "SELECT * FROM user WHERE email='". $_SESSION['email']."'";
   $result             = mysqli_query($mysqli, $query);
 
@@ -71,7 +67,7 @@
   <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3   bg-gradient-dark" id="sidenav-main">
     <div class="sidenav-header">
       <i class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
-      <a class="navbar-brand m-0" href="../../../pages/dashboard/pemilik/suku-cadang-table.php">
+      <a class="navbar-brand m-0" href="../../../pages/dashboard/admin/dashboard.php">
         <img src="../../../assets/img/logo-ct.png" class="navbar-brand-img h-100" alt="main_logo">
         <span class="ms-1 font-weight-bold text-white">True Bengkel</span>
       </a>
@@ -79,25 +75,75 @@
     <hr class="horizontal light mt-0 mb-2">
     <div class="collapse navbar-collapse  w-auto  max-height-vh-100" id="sidenav-collapse-main">
     <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link text-white" href="../../../pages/dashboard/admin/dashboard.php">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">dashboard</i>
+            </div>
+            <span class="nav-link-text ms-1">Dashboard</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="../../../pages/dashboard/admin/admin-table.php">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">table_view</i>
+            </div>
+            <span class="nav-link-text ms-1">Admin</span>
+          </a>
+        </li>
         
         <li class="nav-item">
-          <a class="nav-link text-white " href="../../../pages/dashboard/pemilik/suku-cadang-table.php">
+          <a class="nav-link text-white " href="../../../pages/dashboard/admin/jabatan-table.php">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">store</i>
+              <i class="material-icons opacity-10">table_view</i>
+            </div>
+            <span class="nav-link-text ms-1">Jabatan</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white " href="../../../pages/dashboard/admin/pegawai-table.php">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">table_view</i>
+            </div>
+            <span class="nav-link-text ms-1">Pegawai</span>
+          </a>
+        </li>
+        
+        <li class="nav-item">
+          <a class="nav-link text-white " href="../../../pages/dashboard/admin/pemilik-table.php">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">table_view</i>
+            </div>
+            <span class="nav-link-text ms-1">Pemilik</span>
+          </a>
+        </li>
+        
+        <li class="nav-item">
+          <a class="nav-link text-white active bg-gradient-primary" href="../../../pages/dashboard/admin/suku-cadang-table.php">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">table_view</i>
             </div>
             <span class="nav-link-text ms-1">Suku Cadang</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white" href="../../../pages/dashboard/pemilik/keranjang.php">
+          <a class="nav-link text-white " href="../../../pages/dashboard/admin/tipe-kendaraan-table.php">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="ni ni-cart"></i>
+              <i class="material-icons opacity-10">table_view</i>
             </div>
-            <span class="nav-link-text ms-1">Keranjang</span>
+            <span class="nav-link-text ms-1">Tipe Kendaraan</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white bg-gradient-primary active" href="../../../pages/dashboard/pemilik/billing.php">
+          <a class="nav-link text-white" href="../../../pages/dashboard/admin/kendaraan-table.php">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">airport_shuttle</i>
+            </div>
+            <span class="nav-link-text ms-1">Kendaraan</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white " href="../../../pages/dashboard/admin/billing.php">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">history</i>
             </div>
@@ -108,19 +154,11 @@
           <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Account pages</h6>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white " href="../../../pages/dashboard/pemilik/profile.php">
+          <a class="nav-link text-white " href="../../../pages/dashboard/admin/profile.php">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">person</i>
             </div>
             <span class="nav-link-text ms-1">Profile</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white" href="../../../pages/dashboard/pemilik/kendaraan-table.php">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">airport_shuttle</i>
-            </div>
-            <span class="nav-link-text ms-1">Kendaraan</span>
           </a>
         </li>
         <li class="nav-item">
@@ -141,16 +179,17 @@
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
             <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Pages</a></li>
-            <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Keranjang</a></li>
-            <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Detail Pesanan</li>
+            <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Suku Cadang</li>
           </ol>
-          <h6 class="font-weight-bolder mb-0">Detail Pesanan</h6>
+          <h6 class="font-weight-bolder mb-0">Suku Cadang</h6>
         </nav>
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
           <div class="ms-md-auto pe-md-3 d-flex align-items-center">
             <div class="input-group input-group-outline">
-              <label class="form-label">Search...</label>
-              <input type="text" class="form-control">
+              <form action="search-suku-cadang-table.php" method="get">
+                <input type="text" class="form-control" name="search" placeholder="Search">
+                <button type="submit" class="btn bg-gradient-info">Search</button>
+              </form>
             </div>
           </div>
           <ul class="navbar-nav  justify-content-end">
@@ -181,66 +220,78 @@
     <!-- End Navbar -->
     <div class="container-fluid py-4">
       <div class="row">
-        <div class="mt-4">
-          <div class="card">
-            <div class="card-header pb-0 px-3">
-              <h6 class="mb-0">Detail Pesanan</h6>
+        <div class="col-12">
+          <a class="btn bg-gradient-success mb-3" href="../../../pages/create/suku-cadang.php"><i class="material-icons text-sm">add</i>&nbsp;&nbsp;Add</a>
+          <div class="card my-4">
+            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+              <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+                <h6 class="text-white text-capitalize ps-3">Suku Cadang</h6>
+              </div>
             </div>
-            <div class="card-body pt-4 p-3">
-              <ul class="list-group">
-                <?php
-                  $result     = "SELECT * FROM detail_pesanan_vu
-                                ORDER BY no_nota_suku_cadang DESC LIMIT 1";
-                  $execute    = mysqli_query($mysqli, $result);
-                  $det_pesan  = mysqli_fetch_assoc($execute);
-                ?>
-                <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg">
-                  <div class="d-flex flex-column">
-                    <h6 class="mb-3 text-sm"><?php echo $det_pesan["no_nota_suku_cadang"]; ?></h6>
-                    <span class="mb-2 text-xs">Nama: <span class="text-dark font-weight-bold ms-sm-2"><?php echo $det_pesan["nama_pemilik"]; ?></span></span>
-                    <span class="mb-2 text-xs">No. STNK: <span class="text-dark font-weight-bold ms-sm-2"><?php echo $det_pesan["no_stnk"]; ?></span></span>
-                    <span class="mb-2 text-xs">Tanggal Pesan: <span class="text-dark ms-sm-2 font-weight-bold"><?php echo $det_pesan["tgl_pesan"]; ?> <?php echo $det_pesan["jam_pesan"]; ?></span></span>
-                    <span class="mb-2 text-xs">Tanggal Bayar: <span class="text-dark ms-sm-2 font-weight-bold">
-                      <?php 
-                        if($det_pesan["status"] == 0){
-                          echo "-";
-                        } else {
-                          echo $det_pesan["tgl_bayar"]." ".$det_pesan["jam_bayar"];
-                        }
-                      ?>
-                    </span></span>
-                    <span class="mb-2 text-xs">Status: <span class="text-dark ms-sm-2 font-weight-bold">
-                      <?php 
-                        if($det_pesan["status"] == 0){
-                          echo "Belum Bayar";
-                        } else {
-                          echo "Sudah Bayar";
-                        }
-                      ?>
-                    </span></span>
-                  </div>
-                  <div class="ms-auto text-end">
-                      <?php 
-                        if($det_pesan["status"] == 0){ ?>
-                          <a class="btn btn-link text-danger text-gradient px-3 mb-0" href="javascript:;"><i class="material-icons text-sm me-2">info</i>Belum Bayar</a>
-                  <?php } else { ?>
-                          <a class="btn btn-link text-info text-gradient px-3 mb-0" href="cetak-detail-pesanan.php?id_pkb=<?php echo $_GET['id_pkb']; ?>" target="_blank"><i class="material-icons text-sm me-2">print</i>Cetak</a>
-                          <a class="btn btn-link text-success text-gradient px-3 mb-0" href="javascript:;"><i class="material-icons text-sm me-2">info</i>Sudah Bayar</a>
-                  <?php } ?>
-                  </div>
-                </li>
-              </ul>
+            <div class="card-body px-0 pb-0">
+              <div class="table-responsive p-0">
+                <table class="table align-items-center mb-0">
+                  <thead>
+                    <tr>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 align-middle text-center">Numb</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">ID</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Nama Suku Cadang</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Harga</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php
+                      $semuadata      = array();
+                      if(isset($_GET['search'])){
+                        $cari       = mysqli_query($mysqli, "SELECT * FROM suku_cadang WHERE nama_suku_cadang LIKE '%". $_GET['search'] ."%'");
+                      } else{
+                        $cari       = mysqli_query($mysqli, "SELECT * FROM suku_cadang");
+                      }
+
+                      while($row = mysqli_fetch_assoc($cari)){
+                        $semuadata[]= $row;
+                      }
+
+                      foreach ($semuadata as $suku_cadang) :
+                    ?>
+                    <tr>
+                      <td class="align-middle text-center text-sm">
+                        <span class="text-secondary font-weight-bold text-xs"><?php echo $counter; ?></span>
+                      </td>
+                      <td>
+                        <span class="text-secondary font-weight-bold text-xs"><?php echo $suku_cadang["id_suku_cadang"]; ?></span>
+                      </td>
+                      <td>
+                        <div class="d-flex py-1">
+                          <div>
+                            <img src="../../../assets/suku-cadang/<?php echo $suku_cadang["gambar_suku_cadang"]; ?>" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
+                          </div>
+                          <div class="d-flex flex-column justify-content-center">
+                            <h6 class="mb-0 text-sm"><?php echo $suku_cadang["nama_suku_cadang"]; ?></h6>
+                            <p class="text-xs text-secondary mb-0">Stok: <?php echo $suku_cadang["stok"]; ?></p>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <span class="text-secondary text-xs font-weight-bold"><?php echo 'Rp'.number_format($suku_cadang["harga_satuan"], 2, ',', '.'); ?></span>
+                      </td>
+                      <td>
+                        <a class="btn btn-link text-danger px-3 mb-0" href="../../../process/delete/suku-cadang.php?id_suku_cadang=<?php echo $suku_cadang['id_suku_cadang']; ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')"><i class="material-icons text-sm me-2">delete</i>Delete</a>
+                        <a class="btn btn-link text-warning px-3 mb-0" href="../../../pages/edit/suku-cadang.php?id_suku_cadang=<?php echo $suku_cadang['id_suku_cadang']; ?>"><i class="material-icons text-sm me-2">edit</i>Edit</a>
+                      </td>
+                    </tr>
+                    <?php 
+                      $counter++;
+                      endforeach;
+                    ?>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>
       </div>
-      <?php 
-        if($det_pesan["status"] == 0){ ?>
-          <a class="btn bg-gradient-info mb-3 mt-4" href="bayar.php?id_pkb=<?php echo $det_pesanan['id_pkb']; ?>"><i class="material-icons text-sm">attach_money</i>&nbsp;&nbsp;Pay</a>
-  <?php } else {
-          echo NULL;
-        }
-      ?>
       <footer class="footer py-4  ">
       <div class="container-fluid">
         <div class="row align-items-center justify-content-lg-between">

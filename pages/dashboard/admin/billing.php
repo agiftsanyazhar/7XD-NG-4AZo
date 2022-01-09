@@ -185,8 +185,10 @@
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
           <div class="ms-md-auto pe-md-3 d-flex align-items-center">
             <div class="input-group input-group-outline">
-              <label class="form-label">Search...</label>
-              <input type="text" class="form-control">
+              <form action="search-billing.php" method="get">
+                <input type="text" class="form-control" name="search" placeholder="Search">
+                <button type="submit" class="btn bg-gradient-info">Search</button>
+              </form>
             </div>
           </div>
           <ul class="navbar-nav  justify-content-end">
@@ -216,7 +218,7 @@
     </nav>
     <!-- End Navbar -->
     <div class="container-fluid py-4">
-      <a class="btn bg-gradient-success mb-0" href="cetak-billing.php" target="_blank"><i class="material-icons text-sm">print</i>Cetak</a>
+      <a class="btn bg-gradient-success mb-0" href="cetak-billing.php" target="_blank"><i class="material-icons text-sm">print</i>&nbsp;&nbsp;Cetak</a>
       <div class="row">
         <div class="mt-4">
           <div class="card">

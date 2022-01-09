@@ -59,15 +59,15 @@
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
                           Sign In Gagal!
                         </div>
-                <?php } else if($_GET['pesan'] == "successSignOut"){ ?>
+                <?php } elseif($_GET['pesan'] == "successSignOut"){ ?>
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
                           Sign Out Berhasil!
                         </div>
-                <?php } else if($_GET['pesan'] == "belumSignIn"){ ?>
+                <?php } elseif($_GET['pesan'] == "belumSignIn"){ ?>
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
                           Anda harus Sign In untuk mengakses halaman Dashboard!
                         </div>
-                <?php }  else if($_GET['pesan'] == "belumDaftar"){ ?>
+                <?php }  elseif($_GET['pesan'] == "belumDaftar"){ ?>
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
                           Akun Tidak Ditemukan!
                         </div>
