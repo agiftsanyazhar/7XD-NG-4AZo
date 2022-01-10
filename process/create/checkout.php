@@ -79,7 +79,7 @@
                                     BEGIN
                                         DECLARE hitung INT;
                                         SELECT SUM(dnsc.`banyak`*sc.`harga_satuan`) INTO hitung
-                                        FROM Detail_Nota_Suku_Cadang dnsc JOIN Suku_Cadang sc ON dnsc.id_suku_cadang = sc.id_suku_cadang
+                                        FROM detail_nota_suku_cadang dnsc JOIN suku_cadang sc ON dnsc.id_suku_cadang = sc.id_suku_cadang
                                         WHERE dnsc.no_nota_suku_cadang = id_nsc;
                                     RETURN hitung;
                                     END;");
