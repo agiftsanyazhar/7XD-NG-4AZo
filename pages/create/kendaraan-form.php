@@ -198,8 +198,9 @@
                         $tahun                  =  $_POST['tahun'];
 
                         // 5. Nyari latest id_pemilik kemudian insert into kendaraan biasa
-                        $query1                 =  "SELECT id_pemilik FROM pemilik
-                                                  ORDER BY id_pemilik DESC LIMIT 1";
+                        $query1                 =  "SELECT id_pemilik FROM pemilik p
+                                                    JOIN user u ON p.id_user = u.id_user
+                                                    WHERE u.id_user ='". $_SESSION['id_user'] ."'";
                         $execute1               =  mysqli_query($mysqli, $query1);
                         $row                    =  mysqli_fetch_assoc($execute1);
                         $latest_id_pemilik      =  $row['id_pemilik'];

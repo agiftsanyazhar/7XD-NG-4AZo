@@ -11,9 +11,9 @@
   }
 
   // Fetch all users data from database
-  if(isset($_GET['id_pkb'])){
+  if(isset($_GET['no_nota_suku_cadang'])){
     $kueri              = "SELECT * FROM detail_pesanan_vu
-                          WHERE id_pkb='". $_GET['id_pkb'] ."'";
+                          WHERE no_nota_suku_cadang='". $_GET['no_nota_suku_cadang'] ."'";
     $detail_pesanan     = mysqli_query($mysqli, $kueri);
   }
 
@@ -190,10 +190,7 @@
             <div class="card-body pt-4 p-3">
               <ul class="list-group">
                 <?php
-                  $result     = "SELECT * FROM detail_pesanan_vu
-                                ORDER BY no_nota_suku_cadang DESC LIMIT 1";
-                  $execute    = mysqli_query($mysqli, $result);
-                  $det_pesan  = mysqli_fetch_assoc($execute);
+                  $det_pesan  = mysqli_fetch_assoc($detail_pesanan);
                 ?>
                 <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg">
                   <div class="d-flex flex-column">

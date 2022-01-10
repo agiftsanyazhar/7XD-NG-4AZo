@@ -23,7 +23,7 @@
   $_SESSION['alamat']   = $row['alamat'];
   $_SESSION['telp']     = $row['telp'];
 
-  $kendaraan            = "SELECT * FROM USER u
+  $kendaraan            = "SELECT * FROM user u
                           JOIN pemilik p ON p.id_user = u.id_user
                           JOIN kendaraan k ON k.id_pemilik = p.id_pemilik
                           JOIN tipe_kendaraan tk ON tk.id_tipe = k.id_tipe

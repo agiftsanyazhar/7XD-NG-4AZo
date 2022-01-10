@@ -267,18 +267,17 @@
                           <select class="form-control" name="no_stnk" required>
                               <option value="" disabled selected hidden>Pilih No. STNK</option>
                               <?php
-                                $result          = "SELECT * FROM user u
-                                                    JOIN pemilik p ON p.id_user = u.id_user
-                                                    JOIN kendaraan k ON k.id_pemilik = p.id_pemilik
-                                                    JOIN tipe_kendaraan tk ON tk.id_tipe = k.id_tipe
-                                                    WHERE u.id_user =". $_SESSION['id_user']."";
-                                $execute         = mysqli_query($mysqli, $result);
-
-                                foreach ($execute as $stnk) :
+                                $query1                 =  "SELECT k.no_stnk FROM pemilik p
+                                                            JOIN user u ON p.id_user = u.id_user
+                                                            JOIN kendaraan k ON k.id_pemilik = p.id_pemilik
+                                                            WHERE u.id_user ='". $_SESSION['id_user'] ."'";
+                                $execute1               =  mysqli_query($mysqli, $query1);
+                                
+                                foreach ($execute1 as $stnk) :
                               ?>
                               <option value="<?php echo $stnk['no_stnk']; ?>"><?php echo $stnk['no_stnk']; ?></option>
-                              <?php endforeach; ?>
-                          </select>
+                                <?php endforeach; ?>
+                          </select>  
                         </div>
                       </div>
                     </div>

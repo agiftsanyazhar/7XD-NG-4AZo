@@ -202,7 +202,7 @@
                     </span></span>
                   </div>
                   <div class="ms-auto text-end">
-                    <a class="btn btn-link text-info text-gradient px-3 mb-0" href="detail-pesanan.php?id_pkb=<?php echo $bill['id_pkb']; ?>"><i class="material-icons text-sm me-2">visibility</i>Show</a>
+                    <a class="btn btn-link text-info text-gradient px-3 mb-0" href="detail-pesanan.php?no_nota_suku_cadang=<?php echo $bill['no_nota_suku_cadang']; ?>"><i class="material-icons text-sm me-2">visibility</i>Show</a>
                   </div>
                 </li>
                 <?php endforeach; ?>

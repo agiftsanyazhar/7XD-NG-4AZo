@@ -294,11 +294,10 @@
                           <select class="form-control" name="no_stnk" required>
                               <option value="" disabled selected hidden>Pilih No. STNK</option>
                               <?php
-                                $result          = "SELECT * FROM USER u
-                                                    JOIN pemilik p ON p.id_user = u.id_user
+                                $result          = "SELECT k.no_stnk FROM pemilik p
+                                                    JOIN user u ON p.id_user = u.id_user
                                                     JOIN kendaraan k ON k.id_pemilik = p.id_pemilik
-                                                    JOIN tipe_kendaraan tk ON tk.id_tipe = k.id_tipe
-                                                    WHERE u.id_user =". $_SESSION['id_user']."";
+                                                    WHERE u.id_user ='". $_SESSION['id_user'] ."'";
                                 $execute         = mysqli_query($mysqli, $result);
 
                                 foreach ($execute as $stnk) :
