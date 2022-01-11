@@ -17,7 +17,7 @@
         $password       = md5($_POST['password']);
         $role           = "admin";
 
-        $sql_cek        = mysqli_query($mysqli,"SELECT * FROM user WHERE email='$email' OR telp='$telp'");
+        $sql_cek        = mysqli_query($mysqli,"SELECT * FROM user WHERE email='$email'");
         $r_cek          = mysqli_num_rows($sql_cek);
 
         if ($r_cek>0) { ?>

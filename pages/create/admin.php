@@ -175,12 +175,12 @@
                       <select class="form-control" name="nama" required>
                           <option value="" disabled selected hidden>Nama</option>
                             <?php
-                              $result          = "SELECT * FROM pegawai ";
+                              $result          = "SELECT * FROM user WHERE role='pegawai'";
                               $pegawais        = mysqli_query($mysqli, $result);
 
                               foreach ($pegawais as $pegawai) :
                             ?>
-                          <option value="<?php echo $pegawai['nama_pegawai']; ?>"><?php echo $pegawai['nama_pegawai']; ?></option>
+                          <option value="<?php echo $pegawai['nama']; ?>"><?php echo $pegawai['nama']; ?></option>
                           <?php endforeach; ?>
                       </select>
                     </div>

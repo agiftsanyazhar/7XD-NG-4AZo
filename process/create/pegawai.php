@@ -32,7 +32,7 @@
             $query         =    "INSERT INTO user (id_jabatan, nama, email, password, role, alamat, telp)
                                 VALUES ('$id_jabatan', '$nama', '$email', '$password', '$role', '$alamat', '$telp');
                                 INSERT INTO pegawai
-                                SELECT id_user, id_jabatan, nama, email, password, alamat, telp FROM USER
+                                SELECT id_user, id_jabatan, nama, email, password, alamat, telp FROM user
                                 ORDER BY id_user DESC LIMIT 1";
             $signup        = $mysqli->multi_query($query);
 

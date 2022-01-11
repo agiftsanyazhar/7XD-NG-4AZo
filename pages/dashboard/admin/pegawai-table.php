@@ -12,7 +12,7 @@
   
   // Fetch all users data from database
   $result             = "SELECT u.id_user, j.nama_jabatan, u.nama, u.email, u.password, u.alamat, u.telp
-                        FROM USER u JOIN jabatan j
+                        FROM user u JOIN jabatan j
                         ON u.id_jabatan = j.id_jabatan
                         ORDER BY id_user";
   $pegawais           = mysqli_query($mysqli, $result);
