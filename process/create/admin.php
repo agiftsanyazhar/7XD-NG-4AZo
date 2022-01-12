@@ -28,8 +28,8 @@
 <?php        } else {
             $query         =    "INSERT INTO user (nama, email, password, role)
                                 VALUES ('$nama', '$email', '$password', '$role');
-                                INSERT INTO Admin
-                                SELECT id_user, nama, email, PASSWORD FROM USER
+                                INSERT INTO admin
+                                SELECT id_user, nama, email, PASSWORD FROM user
                                 ORDER BY id_user DESC LIMIT 1";
             $signup        = $mysqli->multi_query($query);
 
